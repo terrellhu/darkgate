@@ -395,6 +395,7 @@ func _grant_starter_items() -> void:
 	var starter_items := {
 		"item_weapon_rifle_01": 1,
 		"item_weapon_tower_shield_01": 1,
+		"item_weapon_aberration_core_01": 1,  ## PLAGUE/PSION/BERSERKER 共用武器（初始 PSION 需要）
 		"item_head_sensor_01": 1,
 		"item_body_armor_01": 1,
 		"item_arms_stim_01": 1,

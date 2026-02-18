@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_executioner_lethal_strike"
+display_name = "致命穿刺"
+skill_type = 0
+target_type = 0
+description = "精准刺入敌人要害，造成较高物理伤害，无视部分护甲并有概率附加流血。"
+priority = 5
+base_damage = 8
+damage_multiplier = 1.5
+cooldown = 1
+ignore_def_ratio = 0.2
+bleed_chance = 0.15
+dot_damage = 3
+dot_duration = 2

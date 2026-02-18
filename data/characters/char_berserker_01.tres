@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/character_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "char_berserker_01"
+display_name = "裂缝"
+profession = 5
+rarity = 2
+description = "异化程度极深，骨刺已穿破皮肤向外凸出，身体正在不规则重构。理智仅剩一线，全靠主角的精神链接维系。战斗时几乎不说话，只有低沉的喘息声。"
+base_hp = 130
+base_atk = 20
+base_def = 5
+base_speed = 10
+base_crit_rate = 0.1
+base_crit_damage = 2.0
+hp_growth = 13.0
+atk_growth = 3.8
+def_growth = 1.0
+speed_growth = 0.25
+star_growth_rate = 0.08
+max_aberration = 100.0
+aberration_per_skill = 25.0
+skill_ids = Array[String](["skill_common_attack", "skill_berserker_cleave", "skill_berserker_annihilate"])
+initial_level = 1
+initial_stars = 2
+initial_equipment_ids = Array[String]([])

@@ -18,9 +18,12 @@ const PROFESSION_NAMES := {
 	3: "瘟疫使者", 4: "脑波术士", 5: "狂暴体",
 }
 
-const TYPE_LABELS := {
-	0: "女武神", 1: "异格者",
-}
+## 异化系职业标记（主动利用异化能力的职业，角色卡显示特殊颜色）
+const ABERRATION_PROFESSIONS: Array[int] = [
+	CharacterData.Profession.PLAGUE,
+	CharacterData.Profession.PSION,
+	CharacterData.Profession.BERSERKER,
+]
 
 
 func setup(char_id: String, char_data: CharacterData, runtime: Dictionary) -> void:
@@ -35,7 +38,9 @@ func setup(char_id: String, char_data: CharacterData, runtime: Dictionary) -> vo
 	%LblName.text = char_data.display_name
 	%LblLevel.text = "Lv.%d" % level
 	%LblProfession.text = PROFESSION_NAMES.get(char_data.profession, "未知")
-	%LblType.text = TYPE_LABELS.get(char_data.char_type, "")
+	# 异化系职业在职业名旁显示紫色（主动利用异化的职业）
+	if int(char_data.profession) in ABERRATION_PROFESSIONS:
+		%LblProfession.add_theme_color_override("font_color", Color(0.6, 0.2, 0.8))
 	%LblStats.text = "HP:%d  ATK:%d  DEF:%d" % [hp, atk, def]
 
 	# 稀有度星标
@@ -44,10 +49,6 @@ func setup(char_id: String, char_data: CharacterData, runtime: Dictionary) -> vo
 	# 稀有度颜色
 	var rarity_color: Color = RARITY_COLORS.get(char_data.rarity, Color.WHITE)
 	%LblName.add_theme_color_override("font_color", rarity_color)
-
-	# 异格者标记
-	if char_data.char_type == CharacterData.CharType.ALTERED:
-		%LblType.add_theme_color_override("font_color", Color(0.6, 0.2, 0.8))
 
 
 func get_char_id() -> String:

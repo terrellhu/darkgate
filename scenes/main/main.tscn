@@ -1,6 +1,93 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0.08, 0.08, 0.12, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.08, 0.08, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
+content_margin_left = 24.0
+content_margin_top = 15.0
+content_margin_right = 24.0
+content_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
+bg_color = Color(0.18, 0.05, 0.05, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.12, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
+content_margin_left = 24.0
+content_margin_top = 15.0
+content_margin_right = 24.0
+content_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3"]
+bg_color = Color(0.50, 0.05, 0.05, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.95, 0.20, 0.20, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
+content_margin_left = 24.0
+content_margin_top = 15.0
+content_margin_right = 24.0
+content_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4"]
+bg_color = Color(0.06, 0.06, 0.09, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.22, 0.28, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
+content_margin_left = 24.0
+content_margin_top = 15.0
+content_margin_right = 24.0
+content_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6"]
+font_size = 64
+font_color = Color(0.94, 0.92, 0.87, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.65, 0.05, 0.05, 0.7)
+shadow_offset = Vector2(3, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7"]
+font_size = 13
+font_color = Color(0.62, 0.10, 0.10, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8"]
+font_size = 14
+font_color = Color(0.45, 0.45, 0.52, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_9"]
+font_size = 11
+font_color = Color(0.25, 0.25, 0.30, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -18,48 +105,114 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.05, 0.05, 0.08, 1)
+color = Color(0.04, 0.04, 0.07, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TopAccent" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -120.0
-offset_right = 150.0
-offset_bottom = 120.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+color = Color(0.72, 0.07, 0.07, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_bottom = 48
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Content" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-text = "异化防线：九重黑门"
+theme_override_constants/separation = 12
+
+[node name="TitleBox" type="VBoxContainer" parent="MarginContainer/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Tagline" type="Label" parent="MarginContainer/Content/TitleBox"]
+layout_mode = 2
+text = "异化防线"
+label_settings = SubResource("LabelSettings_7")
+
+[node name="Title" type="Label" parent="MarginContainer/Content/TitleBox"]
+layout_mode = 2
+text = "九重黑门"
+label_settings = SubResource("LabelSettings_6")
+
+[node name="Divider" type="ColorRect" parent="MarginContainer/Content/TitleBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.65, 0.07, 0.07, 0.7)
+
+[node name="Subtitle" type="Label" parent="MarginContainer/Content/TitleBox"]
+layout_mode = 2
+text = "ABERRATION LINE · THE 9 GATES"
+label_settings = SubResource("LabelSettings_8")
+
+[node name="Spacer" type="Control" parent="MarginContainer/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonBox" type="VBoxContainer" parent="MarginContainer/Content"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="BtnNewGame" type="Button" parent="MarginContainer/Content/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ 开 始 新 档 案 ]"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.92, 0.88, 0.83, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.40, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5")
+
+[node name="BtnContinue" type="Button" parent="MarginContainer/Content/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ 继 续 探 索 ]"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.92, 0.88, 0.83, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.40, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5")
+
+[node name="BtnSettings" type="Button" parent="MarginContainer/Content/ButtonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ 系 统 设 置 ]"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.92, 0.88, 0.83, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.40, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5")
+
+[node name="Footer" type="Label" parent="MarginContainer/Content"]
+layout_mode = 2
+text = "PROTOTYPE  ·  v0.1.0"
 horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Aberration Line: The 9 Gates"
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 40)
-
-[node name="BtnNewGame" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "新游戏"
-
-[node name="BtnContinue" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "继续游戏"
-
-[node name="BtnSettings" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "设置"
+label_settings = SubResource("LabelSettings_9")

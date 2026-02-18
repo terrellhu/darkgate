@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/character_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "char_executioner_01"
+display_name = "断刃"
+profession = 2
+rarity = 1
+description = "前联邦执法特种兵，专职处决无法归化的孽体感染者。刀法精准冷酷，以一击必杀的斩首技闻名于废土。"
+base_hp = 115
+base_atk = 17
+base_def = 6
+base_speed = 12
+base_crit_rate = 0.15
+base_crit_damage = 2.2
+base_armor_pen = 0.1
+hp_growth = 12.0
+atk_growth = 2.8
+def_growth = 1.5
+speed_growth = 0.3
+star_growth_rate = 0.08
+max_aberration = 65.0
+aberration_per_skill = 6.0
+skill_ids = Array[String](["skill_common_attack", "skill_executioner_lethal_strike", "skill_executioner_decapitate"])
+initial_level = 1
+initial_stars = 1
+initial_equipment_ids = Array[String]([])

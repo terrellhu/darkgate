@@ -6,7 +6,6 @@
 script = ExtResource("1")
 id = "char_psion_01"
 display_name = "回声"
-char_type = 1
 profession = 4
 rarity = 2
 description = "一个保持了大部分理智的异格者。左眼已经完全变异为深紫色的复眼，能感知到异化波的波动。说话时偶尔会用第三人称称呼自己。"
@@ -23,7 +22,7 @@ speed_growth = 0.33
 star_growth_rate = 0.08
 max_aberration = 100.0
 aberration_per_skill = 20.0
-skill_ids = Array[String](["skill_common_attack", "skill_psion_mind_burst", "skill_psion_feedback_wave"])
+skill_ids = Array[String](["skill_common_attack", "skill_psion_mind_burst", "skill_psion_feedback_wave", "skill_psion_neural_repair"])
 initial_level = 1
 initial_stars = 1
 initial_equipment_ids = Array[String]([])

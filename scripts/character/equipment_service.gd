@@ -120,10 +120,6 @@ static func get_equip_block_reason(
 		if item.profession_whitelist.find(int(char_data.profession)) == -1:
 			return "职业不符"
 
-	if not item.char_type_whitelist.is_empty():
-		if item.char_type_whitelist.find(int(char_data.char_type)) == -1:
-			return "类型不符"
-
 	var equipment := normalize_hero_equipment(runtime.get("equipment", {}))
 	for equipped_slot in HERO_EQUIP_SLOTS:
 		if equipped_slot == slot:

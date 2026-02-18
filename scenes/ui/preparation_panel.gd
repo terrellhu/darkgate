@@ -126,14 +126,14 @@ func _refresh_inventory_list() -> void:
 
 		var btn := Button.new()
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		btn.text = "%s  x%d  (+HP%d +ATK%d +DEF%d +SPD%d)" % [
-			item.display_name,
-			count,
-			item.equip_hp,
-			item.equip_atk,
-			item.equip_def,
-			item.equip_speed,
-		]
+		var stat_parts: Array[String] = []
+		if item.equip_hp != 0:    stat_parts.append("HP%+d" % item.equip_hp)
+		if item.equip_atk != 0:   stat_parts.append("ATK%+d" % item.equip_atk)
+		if item.equip_def != 0:   stat_parts.append("DEF%+d" % item.equip_def)
+		if item.equip_speed != 0: stat_parts.append("SPD%+d" % item.equip_speed)
+		if item.equip_crit_rate != 0.0:
+			stat_parts.append("暴击%+.0f%%" % (item.equip_crit_rate * 100))
+		btn.text = "%s  x%d  (%s)" % [item.display_name, count, "  ".join(stat_parts)]
 		if reason.is_empty():
 			btn.pressed.connect(_on_equip_item.bind(item_id))
 		else:

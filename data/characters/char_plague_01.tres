@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/character_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "char_plague_01"
+display_name = "孢衣"
+profession = 3
+rarity = 1
+description = "第三阶段感染者，全身被真菌孢子覆盖。孢子在她的控制下可定向感染，但她本人已对毒素完全免疫。说话时伴随轻微咳嗽声，自称'我们'。"
+base_hp = 100
+base_atk = 14
+base_def = 5
+base_speed = 10
+base_crit_rate = 0.07
+base_crit_damage = 1.5
+base_effect_hit = 0.15
+hp_growth = 10.0
+atk_growth = 3.0
+def_growth = 1.2
+speed_growth = 0.28
+star_growth_rate = 0.08
+max_aberration = 90.0
+aberration_per_skill = 15.0
+skill_ids = Array[String](["skill_common_attack", "skill_plague_toxin_cloud", "skill_plague_corrosion"])
+initial_level = 1
+initial_stars = 1
+initial_equipment_ids = Array[String]([])

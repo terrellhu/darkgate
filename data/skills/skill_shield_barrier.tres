@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_shield_barrier"
+display_name = "能量力场"
+skill_type = 3
+target_type = 4
+description = "展开内置纳米护盾，为自身附加等同于攻击力120%的护盾层，并激活嘲讽场，强制吸引敌方攻击。持续2回合。"
+priority = 7
+damage_multiplier = 0.0
+shield_multiplier = 1.2
+cooldown = 4
+taunt_chance = 0.6
+dot_duration = 2

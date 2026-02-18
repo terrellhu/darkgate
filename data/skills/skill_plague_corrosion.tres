@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_plague_corrosion"
+display_name = "腐蚀射线"
+skill_type = 4
+target_type = 0
+description = "向单体目标注入高浓度腐蚀因子，造成持续伤害并有概率沉默技能。"
+priority = 5
+base_damage = 5
+damage_multiplier = 0.9
+cooldown = 2
+aberration_cost = 8.0
+silence_chance = 0.2
+dot_damage = 8
+dot_duration = 2

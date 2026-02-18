@@ -44,8 +44,7 @@ enum EquipSlot {
 @export var equip_speed: int = 0
 @export var equip_crit_rate: float = 0.0
 @export var min_level: int = 1
-@export var profession_whitelist: Array[int] = []
-@export var char_type_whitelist: Array[int] = []
+@export var profession_whitelist: Array[int] = []  ## 允许穿戴的职业枚举值列表；空数组表示不限制
 @export var unique_equip: bool = false
 
 ## 消耗品效果

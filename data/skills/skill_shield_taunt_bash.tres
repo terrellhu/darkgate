@@ -16,5 +16,6 @@ aberration_cost = 0.0
 bleed_chance = 0.0
 stun_chance = 0.2
 silence_chance = 0.0
+taunt_chance = 0.35
 dot_damage = 0
-dot_duration = 0
+dot_duration = 1

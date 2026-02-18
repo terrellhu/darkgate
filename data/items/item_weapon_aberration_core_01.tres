@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "item_weapon_aberration_core_01"
+display_name = "异化核心导管"
+item_type = 0
+quality = 1
+description = "由提炼自黑门的异化晶核制成，能将施法者的异化能量转化为攻击力。物理系职业触碰会引发强烈排异反应。"
+stackable = false
+max_stack = 1
+equip_slot = 0
+equip_atk = 14
+equip_crit_rate = 0.02
+min_level = 1
+profession_whitelist = Array[int]([3, 4, 5])
+unique_equip = false

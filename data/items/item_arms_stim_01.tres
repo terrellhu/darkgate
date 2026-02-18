@@ -16,5 +16,4 @@ equip_atk = 6
 equip_speed = 1
 min_level = 1
 profession_whitelist = Array[int]([])
-char_type_whitelist = Array[int]([])
 unique_equip = false

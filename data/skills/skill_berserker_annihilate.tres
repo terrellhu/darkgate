@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_berserker_annihilate"
+display_name = "毁灭狂击"
+skill_type = 1
+target_type = 0
+description = "燃尽体内积累的异化能量，对单体目标释放毁灭性冲击，伤害极高但消耗大量异化值。"
+priority = 9
+base_damage = 20
+damage_multiplier = 2.8
+cooldown = 3
+aberration_cost = 30.0
+bleed_chance = 0.4
+dot_damage = 8
+dot_duration = 2

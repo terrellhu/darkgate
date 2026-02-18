@@ -26,6 +26,11 @@ enum EnemyType {
 @export var atk: int = 8
 @export var def: int = 3
 @export var speed: int = 8
+@export var crit_rate: float = 0.05      ## 暴击率
+@export var crit_damage: float = 1.5     ## 暴击伤害倍率
+@export var hit_rate: float = 1.0        ## 命中修正
+@export var dodge_rate: float = 0.0      ## 闪避概率
+@export var effect_resist: float = 0.0   ## 效果抵抗（控制/减益施加概率减少）
 
 ## 掉落
 @export_group("掉落")

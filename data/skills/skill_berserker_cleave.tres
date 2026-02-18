@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_berserker_cleave"
+display_name = "裂空劈斩"
+skill_type = 0
+target_type = 0
+description = "以失控般的蛮力横扫单体目标，造成高额物理伤害并有概率撕裂流血。"
+priority = 5
+base_damage = 10
+damage_multiplier = 1.8
+cooldown = 1
+bleed_chance = 0.25
+dot_damage = 4
+dot_duration = 2

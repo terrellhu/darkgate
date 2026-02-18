@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_executioner_decapitate"
+display_name = "斩首令"
+skill_type = 0
+target_type = 0
+description = "蓄力斩击，对单体造成极高物理伤害并大幅穿甲。对低血量目标额外附加重度流血效果。"
+priority = 8
+base_damage = 15
+damage_multiplier = 2.2
+cooldown = 3
+ignore_def_ratio = 0.35
+bleed_chance = 0.35
+dot_damage = 6
+dot_duration = 2

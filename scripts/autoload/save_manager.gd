@@ -4,6 +4,10 @@ extends Node
 
 const SAVE_DIR := "user://save/"
 const MAX_SLOTS := 3
+
+## 存档版本号 —— 开发阶段保持为 1，不随迭代递增。
+## 仅在数据结构正式冻结、需要区分线上旧档时才提升版本号并补写迁移逻辑。
+## ⚠️ 禁止在日常开发中自行修改此常量。
 const SAVE_VERSION := 1
 
 
@@ -56,8 +60,10 @@ func load_game(slot: int) -> bool:
 		return false
 
 	var save_data: Dictionary = json.data
-	if save_data.get("version", 0) != SAVE_VERSION:
-		push_warning("存档版本不匹配，尝试兼容加载")
+	var file_version: int = save_data.get("version", 0)
+	if file_version != SAVE_VERSION:
+		push_warning("SaveManager: 存档版本不匹配（文件=%d，当前=%d），尝试迁移" % [file_version, SAVE_VERSION])
+		save_data = _migrate(save_data, file_version)
 
 	_apply_save_data(save_data)
 	return true
@@ -94,3 +100,14 @@ func _collect_save_data() -> Dictionary:
 ## 将存档数据应用到游戏
 func _apply_save_data(data: Dictionary) -> void:
 	PlayerData.load_from_save_data(data)
+
+
+## 存档版本迁移框架（开发阶段占位，当前无实际迁移逻辑）
+## 使用方式：当 SAVE_VERSION 提升时，在此按版本号补写迁移函数并串联调用。
+## 示例：
+##   if from_version < 2: data = _migrate_v1_to_v2(data)
+##   if from_version < 3: data = _migrate_v2_to_v3(data)
+func _migrate(data: Dictionary, from_version: int) -> Dictionary:
+	# 开发阶段：版本号未启用，直接透传，不做任何字段变换
+	# TODO: 正式发布前在此补写各版本迁移逻辑
+	return data

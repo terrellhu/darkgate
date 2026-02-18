@@ -17,5 +17,4 @@ equip_atk = 4
 equip_crit_rate = 0.03
 min_level = 1
 profession_whitelist = Array[int]([])
-char_type_whitelist = Array[int]([])
 unique_equip = false
