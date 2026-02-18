@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_choice_01"
+event_type = 1
+description = "通道尽头传来微弱的呼救声。你透过裂缝看到一个女性幸存者被困在坍塌的房间里。但废墟结构极不稳定，强行救援可能会引发更大的塌方。"
+choices = [{"text": "冒险救援 —— 消耗生物电，可能获得新队员线索", "result": "rescue"}, {"text": "标记位置后离开 —— 保存实力，但失去机会", "result": "leave"}, {"text": "用精神链接探测周围 —— 消耗精神力，获取安全路线", "result": "scan"}]
+san_change = 0.0
+bio_electricity_change = 0
+low_san_description = "通道尽头传来呼救声。但那声音越来越不对劲——它在模仿你队友的声音。一个接一个。你确定那不是人类的喉咙能发出的频率。"
+critical_san_description = "你自己的声音从通道尽头传来，在呼救。你看着自己的手——它们正在变异。也许被困的人是你自己。"

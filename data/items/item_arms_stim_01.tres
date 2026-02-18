@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "item_arms_stim_01"
+display_name = "神经刺激臂套"
+item_type = 1
+quality = 1
+description = "提升手臂输出效率。"
+stackable = false
+max_stack = 1
+equip_slot = 3
+equip_atk = 6
+equip_speed = 1
+min_level = 1
+profession_whitelist = Array[int]([])
+char_type_whitelist = Array[int]([])
+unique_equip = false

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_narrative_01"
+event_type = 0
+description = "你在废墟的角落发现了一具穿着西装的干尸。他的手中紧握着一张全家福照片——照片上有一个微笑的女人和两个孩子。他的左手已经开始变异，指甲变成了黑色的利爪，但他的右手依然温柔地护着那张照片。
+
+他在变成怪物之前，选择了用最后的理智结束自己。"
+san_change = -3.0
+low_san_description = "一具干尸蜷缩在角落。不，他还在动。他的利爪在照片上缓慢地划过，发出刺耳的声响。他在抚摸他的家人。你听到了哭声——不知道是他的，还是你自己的。"
+critical_san_description = "那具干尸站了起来。他对你微笑着，把照片递给你。照片上的人都变成了你的脸。你的脸上长满了复眼。"

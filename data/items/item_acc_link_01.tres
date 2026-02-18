@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "item_acc_link_01"
+display_name = "战术链接芯片"
+item_type = 2
+quality = 2
+description = "同步战术数据，提升整体响应。"
+stackable = false
+max_stack = 1
+equip_slot = 5
+equip_hp = 12
+equip_atk = 4
+equip_crit_rate = 0.03
+min_level = 1
+profession_whitelist = Array[int]([])
+char_type_whitelist = Array[int]([])
+unique_equip = false

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/character_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "char_psion_01"
+display_name = "回声"
+char_type = 1
+profession = 4
+rarity = 2
+description = "一个保持了大部分理智的异格者。左眼已经完全变异为深紫色的复眼，能感知到异化波的波动。说话时偶尔会用第三人称称呼自己。"
+base_hp = 80
+base_atk = 22
+base_def = 4
+base_speed = 12
+base_crit_rate = 0.08
+base_crit_damage = 2.0
+hp_growth = 9.0
+atk_growth = 3.4
+def_growth = 1.1
+speed_growth = 0.33
+star_growth_rate = 0.08
+max_aberration = 100.0
+aberration_per_skill = 20.0
+skill_ids = Array[String](["skill_common_attack", "skill_psion_mind_burst", "skill_psion_feedback_wave"])
+initial_level = 1
+initial_stars = 1
+initial_equipment_ids = Array[String]([])

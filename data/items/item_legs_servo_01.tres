@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "item_legs_servo_01"
+display_name = "伺服动力腿甲"
+item_type = 1
+quality = 1
+description = "增强移动性能与稳定性。"
+stackable = false
+max_stack = 1
+equip_slot = 4
+equip_hp = 18
+equip_speed = 3
+min_level = 1
+profession_whitelist = Array[int]([])
+char_type_whitelist = Array[int]([])
+unique_equip = false

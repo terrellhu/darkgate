@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_shield_taunt_bash"
+display_name = "震盾猛击"
+skill_type = 0
+target_type = 0
+description = "盾击单体敌人，造成中等伤害并有概率眩晕。"
+base_damage = 6
+damage_multiplier = 1.1
+cooldown = 2
+aberration_cost = 0.0
+bleed_chance = 0.0
+stun_chance = 0.2
+silence_chance = 0.0
+dot_damage = 0
+dot_duration = 0

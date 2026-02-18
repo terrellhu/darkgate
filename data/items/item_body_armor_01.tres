@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "item_body_armor_01"
+display_name = "纳米护甲背心"
+item_type = 1
+quality = 1
+description = "轻量化防护，兼顾行动能力。"
+stackable = false
+max_stack = 1
+equip_slot = 2
+equip_hp = 40
+equip_def = 8
+min_level = 1
+profession_whitelist = Array[int]([])
+char_type_whitelist = Array[int]([])
+unique_equip = false

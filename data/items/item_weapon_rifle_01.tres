@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "item_weapon_rifle_01"
+display_name = "M7突击步枪"
+item_type = 0
+quality = 1
+description = "标准突击步枪，稳定可靠。"
+stackable = false
+max_stack = 1
+equip_slot = 0
+equip_atk = 12
+equip_speed = 2
+min_level = 1
+profession_whitelist = Array[int]([0, 2])
+char_type_whitelist = Array[int]([])
+unique_equip = false

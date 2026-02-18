@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_common_attack"
+display_name = "基础攻击"
+skill_type = 0
+target_type = 0
+description = "对单体目标进行一次标准打击。"
+base_damage = 0
+damage_multiplier = 1.0
+cooldown = 0
+aberration_cost = 0.0
+bleed_chance = 0.0
+stun_chance = 0.0
+silence_chance = 0.0
+dot_damage = 0
+dot_duration = 0

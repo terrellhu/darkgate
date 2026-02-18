@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/character_card.gd" id="1_card"]
+
+[node name="CharacterCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 70)
+mouse_filter = 0
+script = ExtResource("1_card")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeftInfo" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopRow" type="HBoxContainer" parent="HBox/LeftInfo"]
+layout_mode = 2
+
+[node name="LblName" type="Label" parent="HBox/LeftInfo/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "角色名"
+
+[node name="LblRarity" type="Label" parent="HBox/LeftInfo/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "★"
+
+[node name="LblLevel" type="Label" parent="HBox/LeftInfo/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lv.1"
+
+[node name="BottomRow" type="HBoxContainer" parent="HBox/LeftInfo"]
+layout_mode = 2
+
+[node name="LblType" type="Label" parent="HBox/LeftInfo/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "女武神"
+
+[node name="Sep" type="Label" parent="HBox/LeftInfo/BottomRow"]
+layout_mode = 2
+text = "·"
+
+[node name="LblProfession" type="Label" parent="HBox/LeftInfo/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "突击手"
+
+[node name="LblStats" type="Label" parent="HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "HP:100 ATK:10 DEF:5"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

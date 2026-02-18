@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_trap_01"
+event_type = 3
+description = "地面突然塌陷！你的队伍落入了一个充满异化孢子的地下空间。浓密的紫色烟雾迅速侵蚀着每个人的理智。
+
+你必须尽快找到出口。"
+san_change = -10.0
+bio_electricity_change = -5
+low_san_description = "地面张开了嘴。你们跌入了一个巨大生物的胃里。酸液正在溶解你的靴子。墙壁在蠕动，在消化。"
+critical_san_description = "你没有跌落。你一直都在这里。这里就是你的家。紫色的孢子是你的朋友。闭上眼睛。不要挣扎。"

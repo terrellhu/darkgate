@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/character_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "char_assault_01"
+display_name = "烬"
+char_type = 0
+profession = 0
+rarity = 1
+description = "前特种部队突击手。在Y-大崩溃中失去了整支小队，独自在废墟中存活了三个月。沉默寡言，但战斗中异常凶猛。"
+base_hp = 120
+base_atk = 18
+base_def = 6
+base_speed = 14
+base_crit_rate = 0.1
+base_crit_damage = 1.8
+hp_growth = 11.0
+atk_growth = 3.2
+def_growth = 1.4
+speed_growth = 0.35
+star_growth_rate = 0.08
+max_aberration = 0.0
+aberration_per_skill = 0.0
+skill_ids = Array[String](["skill_common_attack", "skill_assault_rapid_fire"])
+initial_level = 1
+initial_stars = 1
+initial_equipment_ids = Array[String]([])

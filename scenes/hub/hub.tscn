@@ -1,0 +1,150 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/hub/hub.gd" id="1_hub"]
+
+[node name="Hub" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hub")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.04, 0.08, 1)
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/separation = 15
+
+[node name="LblBioElectricity" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "生物电: 0"
+
+[node name="LblNanoAlloy" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "合金: 0"
+
+[node name="LblHashrate" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "算力: 0"
+
+[node name="LblMentalPower" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "精神力: 0"
+
+[node name="FacilityList" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.06
+anchor_right = 0.95
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="LblTitle" type="Label" parent="FacilityList"]
+layout_mode = 2
+text = "— 地下枢纽 —"
+horizontal_alignment = 1
+
+[node name="ReactorSlot" type="PanelContainer" parent="FacilityList"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="Label" type="Label" parent="FacilityList/ReactorSlot"]
+layout_mode = 2
+text = "维生反应堆  Lv.1"
+
+[node name="RecruitSlot" type="PanelContainer" parent="FacilityList"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="Label" type="Label" parent="FacilityList/RecruitSlot"]
+layout_mode = 2
+text = "神经接入舱  Lv.1"
+
+[node name="ClinicSlot" type="PanelContainer" parent="FacilityList"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="Label" type="Label" parent="FacilityList/ClinicSlot"]
+layout_mode = 2
+text = "义体诊所  Lv.1"
+
+[node name="MarketSlot" type="PanelContainer" parent="FacilityList"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="Label" type="Label" parent="FacilityList/MarketSlot"]
+layout_mode = 2
+text = "黑市终端  [未解锁]"
+
+[node name="ForgeSlot" type="PanelContainer" parent="FacilityList"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="Label" type="Label" parent="FacilityList/ForgeSlot"]
+layout_mode = 2
+text = "纳米锻造间  [未解锁]"
+
+[node name="DataLabSlot" type="PanelContainer" parent="FacilityList"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="Label" type="Label" parent="FacilityList/DataLabSlot"]
+layout_mode = 2
+text = "数据解析室  [未解锁]"
+
+[node name="BottomNav" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="BtnHub" type="Button" parent="BottomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "枢纽"
+
+[node name="BtnTeam" type="Button" parent="BottomNav"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "队伍"
+
+[node name="BtnExpedition" type="Button" parent="BottomNav"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "探索"
+
+[node name="BtnSettings" type="Button" parent="BottomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "设置"
+
+[node name="PopupLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 10
