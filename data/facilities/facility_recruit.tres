@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FacilityData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/facility_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "recruit"
+display_name = "神经接入舱"
+description = "通过理智广播招募新的幸存者。升级可扩大广播范围。"
+unlock_gate = 0
+produces_resource = ""
+base_output_per_worker = 0
+output_per_level_bonus = 0.2
+upgrade_base_nano = 80
+upgrade_base_chips = 30
+upgrade_cost_scale = 1.6
+max_level = 5
+max_workers_per_level = 1

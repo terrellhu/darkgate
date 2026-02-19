@@ -94,6 +94,7 @@ func _collect_save_data() -> Dictionary:
 		"player_loadout": PlayerData.get_player_loadout_save_data(),
 		"facilities": PlayerData.get_facilities_save_data(),
 		"progress": PlayerData.get_progress_save_data(),
+		"expedition": PlayerData.get_expedition_save_data(),
 	}
 
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_tree_exec_a1"
+display_name = "致命一击"
+description = "精准刺击要害，命中率极高。"
+damage_multiplier = 1.6
+cooldown = 3
+accuracy_bonus = 0.15

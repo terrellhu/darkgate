@@ -198,6 +198,8 @@ func _end_combat(result: String) -> void:
 			_log("")
 			_log("═══ 战斗胜利！ ═══")
 			_award_drops()
+			_award_xp()
+			_check_gate_advance()
 		"defeat":
 			_state = CombatState.DEFEAT
 			_log("")
@@ -248,6 +250,66 @@ func _award_drops() -> void:
 		PlayerData.modify_resource("hashrate", total_hash)
 
 	_log("  获得: 生物电 +%d | 纳米合金 +%d | 算力 +%d" % [total_bio, total_nano, total_hash])
+
+
+## 计算并发放经验值
+func _award_xp() -> void:
+	var total_xp := 0
+	for u in _enemies:
+		total_xp += u.drop_xp
+
+	if total_xp <= 0:
+		return
+
+	var alive_allies: Array[BattleUnit] = []
+	for u in _allies:
+		if u.alive:
+			alive_allies.append(u)
+
+	if alive_allies.is_empty():
+		return
+
+	var per_char_xp := int(ceil(float(total_xp) / alive_allies.size()))
+	for unit in alive_allies:
+		var runtime: Dictionary = PlayerData.owned_characters.get(unit.source_id, {})
+		if runtime.is_empty():
+			continue
+		runtime["xp"] = int(runtime.get("xp", 0)) + per_char_xp
+		var levels_gained := GrowthService.try_level_up(unit.source_id)
+		var new_level: int = int(runtime.get("level", 1))
+		EventBus.xp_awarded.emit(unit.source_id, per_char_xp, new_level)
+		if levels_gained > 0:
+			_log("  %s 升级！Lv.%d (+%d级)" % [unit.display_name, new_level, levels_gained])
+
+	_log("  获得经验: 每人 +%d (总计 %d)" % [per_char_xp, total_xp])
+
+
+## 检查黑门推进条件
+func _check_gate_advance() -> void:
+	# 检查是否为BOSS战（敌方含BOSS类型敌人）
+	var is_boss_fight := false
+	for u in _enemies:
+		var enemy_data: EnemyData = DataManager.get_enemy(u.source_id)
+		if enemy_data != null and enemy_data.enemy_type == EnemyData.EnemyType.BOSS:
+			is_boss_fight = true
+			break
+	if not is_boss_fight:
+		return
+
+	# 推进条件：队伍中任一角色等级 >= 当前黑门 * 5
+	var can_advance := false
+	for unit in _allies:
+		var rt: Dictionary = PlayerData.owned_characters.get(unit.source_id, {})
+		if int(rt.get("level", 1)) >= PlayerData.current_gate * 5:
+			can_advance = true
+			break
+
+	if can_advance and PlayerData.current_gate not in PlayerData.gates_cleared:
+		PlayerData.gates_cleared.append(PlayerData.current_gate)
+		PlayerData.current_gate += 1
+		EventBus.gate_advanced.emit(PlayerData.current_gate)
+		_log("")
+		_log("══ 黑门突破！进入第 %d 层 ══" % PlayerData.current_gate)
 
 
 ## 回写友方状态到 PlayerData

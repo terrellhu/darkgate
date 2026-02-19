@@ -18,7 +18,10 @@ func _on_new_game() -> void:
 
 func _on_continue() -> void:
 	if SaveManager.load_game(0):
-		GameManager.change_state(GameManager.GameState.HUB)
+		if PlayerData.has_expedition_map_state():
+			GameManager.change_state(GameManager.GameState.EXPEDITION)
+		else:
+			GameManager.change_state(GameManager.GameState.HUB)
 
 
 func _on_settings() -> void:

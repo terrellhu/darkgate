@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_01_failure"
+event_type = 0
+description = "队长使尽全力，但金属门纹丝不动。更糟糕的是，撬门的动静惊动了附近的孽体。
+
+你们只能快速撤离这个区域。"
+san_change = -5.0

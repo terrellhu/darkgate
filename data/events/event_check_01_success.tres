@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_01_success"
+event_type = 4
+description = "队长用力撬开了金属门！门后是一个保存完好的旧时代补给站。你们找到了不少有用的物资。"
+san_change = 3.0
+bio_electricity_change = 5

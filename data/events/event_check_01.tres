@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_01"
+event_type = 2
+description = "一道被异化黏液封堵的厚重金属门挡住了去路。门后隐约传来机械运转的声音——也许是一个还在运作的旧时代设施。
+
+你的队长能否凭借力量撬开这扇门？"
+check_attribute = "atk"
+check_threshold = 25
+success_result_id = "event_check_01_success"
+failure_result_id = "event_check_01_failure"
+low_san_description = "门上的异化黏液在蠕动，仿佛有生命一般。它似乎在邀请你触碰它。门后的声音听起来像是某种巨大心脏的跳动。"
+critical_san_description = "那不是门。那是一张嘴。它在等你把手伸进去。"

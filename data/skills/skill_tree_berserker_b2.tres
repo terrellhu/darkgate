@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_tree_berserker_b2"
+display_name = "血之狂宴"
+skill_type = 1
+target_type = 1
+description = "对全体敌人发动血之盛宴，造成伤害并恢复生命。"
+heal_multiplier = 0.3
+cooldown = 5
+aberration_cost = 20.0

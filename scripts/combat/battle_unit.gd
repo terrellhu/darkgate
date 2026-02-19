@@ -47,6 +47,7 @@ var alive: bool = true
 var shield_hp: int = 0
 
 ## ========== 掉落（敌方专用） ==========
+var drop_xp: int = 0
 var drop_bio_electricity: int = 0
 var drop_nano_alloy: int = 0
 var drop_hashrate: int = 0
@@ -188,6 +189,7 @@ static func from_enemy(enemy_id: String, gate: int, index: int) -> BattleUnit:
 	for skill in unit.skills:
 		unit.cooldowns[skill.id] = 0
 
+	unit.drop_xp = enemy_data.drop_xp
 	unit.drop_bio_electricity = enemy_data.drop_bio_electricity
 	unit.drop_nano_alloy = enemy_data.drop_nano_alloy
 	unit.drop_hashrate = enemy_data.drop_hashrate

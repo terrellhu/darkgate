@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_reward_01"
+event_type = 4
+description = "在一间被遗弃的军械室里，你发现了一个未被打开的应急储物柜。柜门上贴着褪色的军方标志。
+
+打开后，里面的物资保存得相当完好。"
+san_change = 2.0
+bio_electricity_change = 3
+low_san_description = "储物柜自己打开了。里面的东西在向你招手。你确定这是好意吗？不管了，先拿再说。"
+critical_san_description = "储物柜里坐着一个微笑的小女孩。她把手中的东西递给你，然后消失了。你回过神来，手里确实多了些东西。"

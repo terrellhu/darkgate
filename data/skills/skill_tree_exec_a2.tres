@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_tree_exec_a2"
+display_name = "暗影步"
+description = "瞬移至目标身后发动攻击，无法被闪避。"
+damage_multiplier = 1.4
+cooldown = 3
+accuracy_bonus = 0.2

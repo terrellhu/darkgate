@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_tree_shield_b3"
+display_name = "以守为攻"
+skill_type = 0
+target_type = 1
+description = "以防御力为基础对所有敌人造成伤害。"
+priority = 0
+damage_multiplier = 0.8
+cooldown = 5

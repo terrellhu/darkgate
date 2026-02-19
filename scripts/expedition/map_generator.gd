@@ -36,6 +36,22 @@ const GATE_ENEMIES := {
 		],
 		"boss": ["enemy_boss_gate1"],  ## 深渊吞噬者
 	},
+	2: {
+		"normal": [
+			"enemy_mech_abom_01",      ## 废铁傀儡 - 高甲眩晕
+			"enemy_mech_abom_02",      ## 破损哨卫 - 干扰嚎叫
+			"enemy_mutant_beast_01",   ## 变异噬齿兽 - 高速攻击
+			"enemy_mutant_beast_02",   ## 变异蛛蝎 - 毒液DoT
+			"enemy_abomination_01",    ## 初级孽体 - 基础肉搏
+			"enemy_abomination_02",    ## 腐烂孽体 - 带流血撕咬
+		],
+		"elite": [
+			"enemy_elite_brute_01",    ## 肥大畸变体 - 高血眩晕
+			"enemy_elite_spitter_01",  ## 腐液喷射者 - DoT+沉默
+			"enemy_elite_stalker_01",  ## 暗影潜行者 - 高速流血
+		],
+		"boss": ["enemy_boss_gate2"],  ## 铁壁主脑
+	},
 }
 
 ## 精英出现概率（战斗节点有此概率变为精英战）

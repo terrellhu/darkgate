@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_tree_exec_b3"
+display_name = "剧毒爆发"
+target_type = 1
+description = "引爆所有敌人身上的毒素，造成范围伤害并施加剧毒。"
+damage_multiplier = 1.2
+cooldown = 5
+dot_damage = 8
+dot_duration = 2

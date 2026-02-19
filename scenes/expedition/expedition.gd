@@ -169,16 +169,31 @@ func _update_all_node_uis() -> void:
 		ui.update_display()
 
 
-## 揭示相邻节点
+## 揭示相邻节点（低链接时视野受限）
 func _reveal_adjacent(node_id: String) -> void:
 	var node: MapNodeData = _map_nodes.get(node_id)
 	if node == null:
 		return
 	node.revealed = true
+	var reduced_vision := PlayerData.current_mental_link < CombatConfig.LINK_VISION_REDUCED_THRESHOLD
+	var revealed_any := false
 	for adj_id in node.connected_nodes:
 		var adj: MapNodeData = _map_nodes.get(adj_id)
-		if adj:
-			adj.revealed = true
+		if adj == null:
+			continue
+		if adj.revealed:
+			revealed_any = true
+			continue
+		if reduced_vision and randf() < CombatConfig.LINK_VISION_REDUCED_CHANCE:
+			continue
+		adj.revealed = true
+		revealed_any = true
+	# 保证至少揭示1个相邻节点（防死锁）
+	if not revealed_any and not node.connected_nodes.is_empty():
+		var fallback_id: String = node.connected_nodes[randi() % node.connected_nodes.size()]
+		var fb: MapNodeData = _map_nodes.get(fallback_id)
+		if fb:
+			fb.revealed = true
 
 
 ## 节点点击处理
@@ -202,6 +217,10 @@ func _on_node_clicked(node_id: String) -> void:
 	# 消耗资源
 	PlayerData.modify_resource("bio_electricity", -target_node.bio_electricity_cost)
 	PlayerData.modify_san(-target_node.san_drain)
+
+	# 精神链接衰减
+	var link_decay := CombatConfig.LINK_DECAY_BASE + PlayerData.current_gate * CombatConfig.LINK_DECAY_PER_GATE
+	PlayerData.modify_mental_link(-link_decay)
 
 	# 移动
 	_current_node_id = node_id
@@ -264,20 +283,84 @@ func _handle_event() -> void:
 		_handle_empty()
 		return
 
-	# 根据 SAN 选择描述文本
-	var text := _get_san_based_text(event_data)
+	match event_data.event_type:
+		EventData.EventType.CHECK:
+			_handle_check_event(event_data)
+		EventData.EventType.CHOICE:
+			_handle_choice_event(event_data)
+		_:  # NARRATIVE, TRAP, REWARD
+			_apply_event_effects(event_data)
 
-	# 应用即时效果
+
+## 处理选择事件
+func _handle_choice_event(event_data: EventData) -> void:
+	var text := _get_san_based_text(event_data)
 	if event_data.san_change != 0.0:
 		PlayerData.modify_san(event_data.san_change)
 	if event_data.bio_electricity_change != 0:
 		PlayerData.modify_resource("bio_electricity", event_data.bio_electricity_change)
-
-	# 显示事件
-	if event_data.event_type == EventData.EventType.CHOICE and not event_data.choices.is_empty():
+	if not event_data.choices.is_empty():
 		display_narrative(text, event_data.choices)
 	else:
 		_show_narrative(text)
+
+
+## 处理检定事件
+func _handle_check_event(event_data: EventData) -> void:
+	var check_value := 0
+	if not PlayerData.team.is_empty():
+		var leader_id: String = PlayerData.team[0]
+		var stats := PlayerData.get_character_stats(leader_id)
+		check_value = int(stats.get(event_data.check_attribute, 0))
+
+	var success := check_value >= event_data.check_threshold
+	var text := _get_san_based_text(event_data)
+	if success:
+		text += "\n\n[检定成功] %s: %d >= %d" % [event_data.check_attribute, check_value, event_data.check_threshold]
+	else:
+		text += "\n\n[检定失败] %s: %d < %d" % [event_data.check_attribute, check_value, event_data.check_threshold]
+	_show_narrative(text)
+
+	var result_id := event_data.success_result_id if success else event_data.failure_result_id
+	if not result_id.is_empty():
+		var result_event: EventData = DataManager.get_event(result_id)
+		if result_event != null:
+			await get_tree().create_timer(1.5).timeout
+			_apply_event_effects(result_event)
+
+
+## 应用事件效果（通用：san/bio/物品/触发战斗）
+func _apply_event_effects(event_data: EventData) -> void:
+	var text := _get_san_based_text(event_data)
+
+	if event_data.san_change != 0.0:
+		PlayerData.modify_san(event_data.san_change)
+		text += "\n理智 %+.0f" % event_data.san_change
+	if event_data.bio_electricity_change != 0:
+		PlayerData.modify_resource("bio_electricity", event_data.bio_electricity_change)
+		text += "\n生物电 %+d" % event_data.bio_electricity_change
+
+	# 物品奖励
+	if not event_data.item_rewards.is_empty():
+		text += "\n\n获得物品："
+		for item_id in event_data.item_rewards:
+			PlayerData.add_item_to_inventory(item_id, 1)
+			var item: Resource = DataManager.get_item(item_id)
+			var item_name: String = item.display_name if item != null and "display_name" in item else item_id
+			text += "\n  %s x1" % item_name
+
+	_show_narrative(text)
+
+	# 事件触发战斗
+	if event_data.trigger_combat and not event_data.combat_enemy_ids.is_empty():
+		await get_tree().create_timer(1.5).timeout
+		_show_narrative("敌人出现了！\n\n[即将进入战斗...]")
+		await get_tree().create_timer(1.5).timeout
+		_save_expedition_state()
+		var enemy_ids: Array[String] = []
+		for eid in event_data.combat_enemy_ids:
+			enemy_ids.append(eid)
+		GameManager.start_combat(enemy_ids)
 
 
 func _handle_treasure() -> void:
@@ -464,3 +547,4 @@ func _save_expedition_state() -> void:
 		if node.revealed:
 			revealed[node_id] = true
 	PlayerData.save_expedition_map_state(_map_seed, _map_cols, _map_rows, _current_node_id, _visited_nodes, revealed)
+	SaveManager.save_game(0)

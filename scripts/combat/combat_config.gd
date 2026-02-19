@@ -55,6 +55,12 @@ const DROP_SAN_CRITICAL_BONUS := 0.15
 const DROP_SAN_LOW_THRESHOLD := 40.0
 const DROP_SAN_CRITICAL_THRESHOLD := 10.0
 
+## ========== 精神链接衰减（探索用） ==========
+const LINK_DECAY_BASE := 2.0
+const LINK_DECAY_PER_GATE := 0.3
+const LINK_VISION_REDUCED_THRESHOLD := 50.0
+const LINK_VISION_REDUCED_CHANCE := 0.5
+
 ## ========== 通用 ==========
 const MIN_DAMAGE := 1
 const MIN_SPEED := 1

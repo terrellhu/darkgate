@@ -349,6 +349,160 @@ func clear_expedition_map_state() -> void:
 	_expedition_revealed_nodes.clear()
 
 
+## 升级设施（扣除资源，等级+1）
+func upgrade_facility(facility_id: String) -> bool:
+	if not facilities.has(facility_id):
+		return false
+	var config: FacilityData = DataManager.get_facility(facility_id)
+	if config == null:
+		return false
+	var state: Dictionary = facilities[facility_id]
+	var level: int = int(state.get("level", 0))
+	if level >= config.max_level:
+		return false
+	if not FacilityService.can_afford_upgrade(config, level):
+		return false
+	var cost := FacilityService.get_upgrade_cost(config, level)
+	modify_resource("nano_alloy", -cost["nano_alloy"])
+	modify_resource("chips", -cost["chips"])
+	state["level"] = level + 1
+	facilities[facility_id] = state
+	EventBus.facility_upgraded.emit(facility_id, level + 1)
+	return true
+
+
+## 设置设施工人数（上限受等级约束）
+func set_facility_workers(facility_id: String, count: int) -> void:
+	if not facilities.has(facility_id):
+		return
+	var config: FacilityData = DataManager.get_facility(facility_id)
+	if config == null:
+		return
+	var state: Dictionary = facilities[facility_id]
+	var level: int = int(state.get("level", 0))
+	var max_w := FacilityService.get_max_workers(config, level)
+	state["workers"] = clampi(count, 0, max_w)
+	facilities[facility_id] = state
+
+
+## 获取当前总分配工人数
+func get_total_assigned_workers() -> int:
+	var total := 0
+	for fid: String in facilities:
+		total += int(facilities[fid].get("workers", 0))
+	return total
+
+
+## 获取可用工人上限（= 已拥有角色数）
+func get_max_workers() -> int:
+	return owned_characters.size()
+
+
+## 强化装备（指定角色的指定槽位）
+func enhance_equipment(char_id: String, slot: String) -> bool:
+	if not owned_characters.has(char_id):
+		return false
+	var runtime: Dictionary = owned_characters[char_id]
+	var equip: Dictionary = EquipmentService.normalize_hero_equipment(runtime.get("equipment", {}))
+	var item_id: String = String(equip.get(slot, ""))
+	if item_id.is_empty():
+		return false
+	var enhancements: Dictionary = runtime.get("enhancements", {})
+	var current_level: int = int(enhancements.get(item_id, 0))
+	if current_level >= GrowthService.MAX_ENHANCE_LEVEL:
+		return false
+	var cost := GrowthService.get_enhance_cost(current_level)
+	if nano_alloy < cost["nano_alloy"] or bio_electricity < cost["bio_electricity"]:
+		return false
+	modify_resource("nano_alloy", -cost["nano_alloy"])
+	modify_resource("bio_electricity", -cost["bio_electricity"])
+	enhancements[item_id] = current_level + 1
+	runtime["enhancements"] = enhancements
+	GrowthService.recalculate_stats(char_id)
+	return true
+
+
+## 星级突破
+func star_upgrade(char_id: String) -> bool:
+	if not owned_characters.has(char_id):
+		return false
+	var runtime: Dictionary = owned_characters[char_id]
+	var current_stars: int = int(runtime.get("stars", 1))
+	if current_stars >= GrowthService.MAX_STARS:
+		return false
+	var cost := GrowthService.get_star_upgrade_cost(current_stars)
+	if chips < cost["chips"] or nano_alloy < cost["nano_alloy"]:
+		return false
+	modify_resource("chips", -cost["chips"])
+	modify_resource("nano_alloy", -cost["nano_alloy"])
+	runtime["stars"] = current_stars + 1
+	GrowthService.recalculate_stats(char_id)
+	return true
+
+
+## 解锁技能树节点
+func unlock_tree_skill(char_id: String, skill_id: String) -> bool:
+	if not owned_characters.has(char_id):
+		return false
+	var char_data: CharacterData = DataManager.get_character(char_id)
+	if char_data == null:
+		return false
+	var runtime: Dictionary = owned_characters[char_id]
+	var tree: ProfessionTreeData = DataManager.get_skill_tree_for_profession(char_data.profession)
+	if tree == null:
+		return false
+
+	var tree_unlocks: Array = runtime.get("tree_unlocks", [])
+
+	# 确定技能属于哪个分支和哪个位置
+	var branch_skills: Array[String] = []
+	var other_branch_skills: Array[String] = []
+	if skill_id in tree.branch_a_skills:
+		branch_skills = tree.branch_a_skills
+		other_branch_skills = tree.branch_b_skills
+	elif skill_id in tree.branch_b_skills:
+		branch_skills = tree.branch_b_skills
+		other_branch_skills = tree.branch_a_skills
+	else:
+		return false  # 技能不属于此职业树
+
+	var node_index := branch_skills.find(skill_id)
+	if node_index < 0:
+		return false
+
+	# 检查等级门槛
+	var required_level: int = ProfessionTreeData.NODE_LEVELS[node_index]
+	var char_level: int = int(runtime.get("level", 1))
+	if char_level < required_level:
+		return false
+
+	# 检查前序节点
+	if node_index > 0:
+		var prev_skill: String = branch_skills[node_index - 1]
+		if prev_skill not in tree_unlocks:
+			return false
+
+	# 检查分支互斥（如果已解锁了另一分支的任意节点，禁止解锁本分支）
+	for unlocked_id in tree_unlocks:
+		if unlocked_id in other_branch_skills:
+			return false
+
+	# 已解锁则跳过
+	if skill_id in tree_unlocks:
+		return false
+
+	tree_unlocks.append(skill_id)
+	runtime["tree_unlocks"] = tree_unlocks
+
+	# 同步到 skill_ids
+	var skill_ids: Array = runtime.get("skill_ids", [])
+	if skill_id not in skill_ids:
+		skill_ids.append(skill_id)
+		runtime["skill_ids"] = skill_ids
+
+	return true
+
+
 ## 消耗精神力（主角能力代价）
 func consume_mental_power(amount: float) -> bool:
 	if mental_power < amount:
@@ -436,6 +590,22 @@ func load_from_save_data(data: Dictionary) -> void:
 	explored_nodes = prog.get("explored_nodes", {})
 	_normalize_inventory_data()
 
+	# 恢复探索状态
+	var exp_data: Dictionary = data.get("expedition", {})
+	if not exp_data.is_empty():
+		current_san = exp_data.get("current_san", MAX_SAN)
+		current_mental_link = exp_data.get("current_mental_link", 100.0)
+		_expedition_map_seed = int(exp_data.get("map_seed", 0))
+		_expedition_map_cols = int(exp_data.get("map_cols", 0))
+		_expedition_map_rows = int(exp_data.get("map_rows", 0))
+		_expedition_current_node_id = str(exp_data.get("current_node_id", ""))
+		_expedition_visited_nodes = exp_data.get("visited_nodes", {})
+		_expedition_revealed_nodes = exp_data.get("revealed_nodes", {})
+	else:
+		current_san = MAX_SAN
+		current_mental_link = 100.0
+		clear_expedition_map_state()
+
 
 func _grant_starter_items() -> void:
 	var starter_items := {
@@ -467,6 +637,22 @@ func _normalize_player_loadout(raw: Variant) -> Dictionary:
 		for key in normalized.keys():
 			normalized[key] = String(dict_raw.get(key, ""))
 	return normalized
+
+
+## 获取探索状态存档数据（无进行中探索时返回空字典）
+func get_expedition_save_data() -> Dictionary:
+	if _expedition_current_node_id.is_empty():
+		return {}
+	return {
+		"current_san": current_san,
+		"current_mental_link": current_mental_link,
+		"map_seed": _expedition_map_seed,
+		"map_cols": _expedition_map_cols,
+		"map_rows": _expedition_map_rows,
+		"current_node_id": _expedition_current_node_id,
+		"visited_nodes": _expedition_visited_nodes.duplicate(),
+		"revealed_nodes": _expedition_revealed_nodes.duplicate(),
+	}
 
 
 func _normalize_inventory_data() -> void:

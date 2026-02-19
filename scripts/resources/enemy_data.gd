@@ -34,6 +34,7 @@ enum EnemyType {
 
 ## 掉落
 @export_group("掉落")
+@export var drop_xp: int = 10
 @export var drop_bio_electricity: int = 0
 @export var drop_nano_alloy: int = 0
 @export var drop_hashrate: int = 0

@@ -46,6 +46,12 @@ signal popup_requested(popup_type: String, data: Dictionary)
 ## 叙事文本显示
 signal narrative_display(text: String, choices: Array)
 
+# ========== 成长相关 ==========
+## 角色获得经验
+signal xp_awarded(character_id: String, amount: int, new_level: int)
+## 黑门推进
+signal gate_advanced(new_gate: int)
+
 # ========== 枢纽经营 ==========
 ## 设施升级
 signal facility_upgraded(facility_id: String, new_level: int)

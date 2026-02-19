@@ -18,6 +18,7 @@ crit_damage = 1.8
 hit_rate = 1.0
 dodge_rate = 0.15
 effect_resist = 0.05
+drop_xp = 20
 drop_bio_electricity = 12
 drop_nano_alloy = 5
 drop_hashrate = 3

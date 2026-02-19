@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_tree_berserker_b1"
+display_name = "生命掠夺"
+skill_type = 1
+description = "以异化之力撕裂敌人，吸取其生命力。"
+damage_multiplier = 1.3
+heal_multiplier = 0.4
+cooldown = 3
+aberration_cost = 12.0

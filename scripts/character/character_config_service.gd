@@ -29,6 +29,9 @@ static func build_new_runtime(char_id: String) -> Dictionary:
 			"current_aberration": 0.0,
 			"equipment": EquipmentService.create_empty_hero_equipment(),
 			"skill_ids": [],
+			"xp": 0,
+			"enhancements": {},
+			"tree_unlocks": [],
 		}
 
 	var initial_equipment := EquipmentService.assign_items_to_slots(
@@ -43,6 +46,9 @@ static func build_new_runtime(char_id: String) -> Dictionary:
 		"current_aberration": 0.0,
 		"equipment": initial_equipment,
 		"skill_ids": char_data.skill_ids.duplicate(),
+		"xp": 0,
+		"enhancements": {},
+		"tree_unlocks": [],
 	}
 
 	var stats := calculate_stats(char_data, runtime)
@@ -86,6 +92,17 @@ static func normalize_runtime(char_id: String, runtime: Dictionary) -> Dictionar
 	else:
 		normalized["current_aberration"] = float(normalized["current_aberration"])
 
+	if not normalized.has("xp"):
+		normalized["xp"] = 0
+	else:
+		normalized["xp"] = maxi(0, int(normalized["xp"]))
+
+	if not normalized.has("enhancements"):
+		normalized["enhancements"] = {}
+
+	if not normalized.has("tree_unlocks"):
+		normalized["tree_unlocks"] = []
+
 	var stats := calculate_stats(char_data, normalized)
 	var max_hp := int(stats.get("max_hp", 1))
 	if not normalized.has("current_hp") or int(normalized["current_hp"]) <= 0:
@@ -113,6 +130,7 @@ static func calculate_stats(char_data: CharacterData, runtime: Dictionary) -> Di
 		EquipmentService.normalize_hero_equipment(equipment_raw)
 	)
 
+	var enhancements: Dictionary = runtime.get("enhancements", {})
 	var equip_hp := 0
 	var equip_atk := 0
 	var equip_def := 0
@@ -123,10 +141,12 @@ static func calculate_stats(char_data: CharacterData, runtime: Dictionary) -> Di
 		var item: ItemData = DataManager.get_item(item_id)
 		if item == null:
 			continue
-		equip_hp += item.equip_hp
-		equip_atk += item.equip_atk
-		equip_def += item.equip_def
-		equip_speed += item.equip_speed
+		var enhance_level: int = int(enhancements.get(item_id, 0))
+		var enhance_mult := 1.0 + enhance_level * 0.08
+		equip_hp += int(floor(item.equip_hp * enhance_mult))
+		equip_atk += int(floor(item.equip_atk * enhance_mult))
+		equip_def += int(floor(item.equip_def * enhance_mult))
+		equip_speed += int(floor(item.equip_speed * enhance_mult))
 		equip_crit_rate += item.equip_crit_rate
 
 	# 星级加成：HP满额，ATK/DEF 80%，Speed 30%（详见 docs/profession-system-design.md §3）

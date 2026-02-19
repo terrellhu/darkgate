@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skill_enemy_charge"
+display_name = "冲锋"
+skill_type = 0
+target_type = 0
+description = "向目标猛冲而去，造成大量伤害并可能眩晕。"
+priority = 1
+base_damage = 5
+damage_multiplier = 1.6
+cooldown = 3
+stun_chance = 0.3
