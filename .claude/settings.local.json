@@ -6,7 +6,9 @@
       "Bash(done)",
       "Bash(python3:*)",
       "Bash(python:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(find:*)",
+      "Bash(ls \"f:\\\\code\\\\godot\\\\darkgate\\\\data\\\\enemies\"\" 2>/dev/null || echo \"No enemies directory found \")"
     ]
   }
 }

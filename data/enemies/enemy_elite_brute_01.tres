@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_elite_brute_01"
+display_name = "肥大畸变体"
+enemy_type = 0
+description = "多具孽体融合而成的巨型异化体，每一次挥拳都伴随震颤。"
+gate_range = Array[int]([1, 2, 3])
+hp = 150
+atk = 14
+def = 7
+speed = 6
+crit_rate = 0.06
+crit_damage = 1.6
+hit_rate = 0.95
+dodge_rate = 0.0
+effect_resist = 0.10
+drop_bio_electricity = 15
+drop_nano_alloy = 6
+drop_hashrate = 3
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_slam", "skill_enemy_bite"])

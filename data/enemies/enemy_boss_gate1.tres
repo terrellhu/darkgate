@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_boss_gate1"
+display_name = "深渊吞噬者"
+enemy_type = 5
+description = "黑门核心的守护者。巨大的异化体，由数十具合并的人体组成。"
+gate_range = Array[int]([1])
+hp = 300
+atk = 15
+def = 10
+speed = 10
+crit_rate = 0.08
+crit_damage = 1.8
+hit_rate = 1.0
+dodge_rate = 0.02
+effect_resist = 0.15
+drop_bio_electricity = 30
+drop_nano_alloy = 15
+drop_hashrate = 10
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_shield_taunt_bash"])

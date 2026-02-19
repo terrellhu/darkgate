@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_abomination_02"
+display_name = "腐烂孽体"
+enemy_type = 0
+description = "比初级孽体更进一步腐化的躯壳，散发恶臭的脓液可以侵蚀伤口。"
+gate_range = Array[int]([1, 2, 3])
+hp = 55
+atk = 11
+def = 3
+speed = 7
+crit_rate = 0.05
+crit_damage = 1.5
+hit_rate = 1.0
+dodge_rate = 0.0
+effect_resist = 0.0
+drop_bio_electricity = 7
+drop_nano_alloy = 2
+drop_hashrate = 0
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_bite"])

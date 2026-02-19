@@ -10,6 +10,9 @@ var _map_nodes: Dictionary = {}  ## { id: MapNodeData }
 var _node_uis: Dictionary = {}   ## { id: MapNodeUI }
 var _current_node_id: String = ""
 var _visited_nodes: Dictionary = {}  ## { id: true }
+var _map_seed: int = 0
+var _map_cols: int = 0
+var _map_rows: int = 0
 
 # ========== 事件 ID 池 ==========
 var _event_ids: Array[String] = []
@@ -64,29 +67,72 @@ func _ready() -> void:
 	for event_id: String in all_events:
 		_event_ids.append(event_id)
 
-	# 生成地图
-	var nodes := MapGeneratorScript.generate(PlayerData.current_gate)
-	for node in nodes:
-		_map_nodes[node.id] = node
-
-	# 渲染地图
-	_render_map()
-
-	# 玩家从入口开始（第1行中间）
-	_current_node_id = "node_0_2"
-	_visited_nodes[_current_node_id] = true
-	_reveal_adjacent(_current_node_id)
-	_update_all_node_uis()
-
-	# 初始叙事
-	_show_narrative("你踏入了第%d扇黑门。精神链接已建立。\n\n注意管理你的理智和生物电。点击相邻的高亮节点移动。" % PlayerData.current_gate)
-
-	# UI 连接
+	# UI 连接（先连接，地图稍后渲染）
 	_update_status_bars()
 	EventBus.san_updated.connect(_on_san_updated)
 	EventBus.mental_link_updated.connect(_on_mental_link_updated)
 	%BtnRest.pressed.connect(_on_rest)
 	%BtnRetreat.pressed.connect(_on_retreat)
+
+	# 等一帧拿到容器实际尺寸，再计算网格数量并生成地图
+	await get_tree().process_frame
+	_build_map()
+
+
+## 根据容器尺寸构建完整地图
+func _build_map() -> void:
+	var container_size: Vector2 = %MapGrid.get_parent().size
+	var grid_size := MapGeneratorScript.calc_grid_size(container_size)
+	_map_cols = grid_size.x
+	_map_rows = grid_size.y
+	%MapGrid.columns = _map_cols
+
+	if PlayerData.has_expedition_map_state():
+		_restore_expedition_state()
+	else:
+		_init_fresh_expedition()
+
+	_render_map()
+	_reveal_adjacent(_current_node_id)
+	_update_all_node_uis()
+
+	# 检查是否刚击败 BOSS
+	_check_boss_victory()
+
+
+## 初始化全新探索
+func _init_fresh_expedition() -> void:
+	_map_seed = hash(PlayerData.current_gate * 1000 + randi())
+	var nodes := MapGeneratorScript.generate(PlayerData.current_gate, _map_cols, _map_rows, _map_seed)
+	for node in nodes:
+		_map_nodes[node.id] = node
+
+	@warning_ignore("integer_division")
+	_current_node_id = "node_0_%d" % (_map_cols / 2)
+	_visited_nodes[_current_node_id] = true
+	_show_narrative("你踏入了第%d扇黑门。精神链接已建立。\n\n注意管理你的理智和生物电。点击相邻的高亮节点移动。" % PlayerData.current_gate)
+
+
+## 从战斗返回时恢复探索状态
+func _restore_expedition_state() -> void:
+	var state := PlayerData.get_expedition_map_state()
+	_map_seed = state["seed"]
+	# 使用保存时的网格尺寸（保证种子能还原同一张地图）
+	_map_cols = state["cols"] as int
+	_map_rows = state["rows"] as int
+	%MapGrid.columns = _map_cols
+	_current_node_id = state["current_node_id"]
+	_visited_nodes = state["visited_nodes"]
+	var revealed_nodes: Dictionary = state["revealed_nodes"]
+
+	var nodes := MapGeneratorScript.generate(PlayerData.current_gate, _map_cols, _map_rows, _map_seed)
+	for node in nodes:
+		_map_nodes[node.id] = node
+		if revealed_nodes.has(node.id):
+			node.revealed = true
+
+	PlayerData.clear_expedition_map_state()
+	_show_narrative("战斗结束，继续探索...")
 
 
 ## 渲染地图网格
@@ -95,8 +141,8 @@ func _render_map() -> void:
 		child.queue_free()
 	_node_uis.clear()
 
-	for row in MapGeneratorScript.ROWS:
-		for col in MapGeneratorScript.COLUMNS:
+	for row in _map_rows:
+		for col in _map_cols:
 			var node_id := "node_%d_%d" % [row, col]
 			var node_data: MapNodeData = _map_nodes.get(node_id)
 			if node_data == null:
@@ -202,6 +248,7 @@ func _handle_battle(node: MapNodeData) -> void:
 	var text: String = BATTLE_TEXTS[randi() % BATTLE_TEXTS.size()]
 	_show_narrative(text + "\n\n[即将进入战斗...]")
 	await get_tree().create_timer(1.5).timeout
+	_save_expedition_state()
 	var enemy_ids: Array[String] = node.enemy_group.duplicate()
 	GameManager.start_combat(enemy_ids)
 
@@ -260,8 +307,31 @@ func _handle_supply() -> void:
 func _handle_boss(node: MapNodeData) -> void:
 	_show_narrative("你感受到了门扉核心散发的强大异化波。这里就是本层的核心。\n\n准备迎战BOSS！\n\n[即将进入战斗...]")
 	await get_tree().create_timer(2.0).timeout
+	_save_expedition_state()
 	var enemy_ids: Array[String] = node.enemy_group.duplicate()
 	GameManager.start_combat(enemy_ids)
+
+
+## 检查是否刚从 BOSS 战胜利返回
+func _check_boss_victory() -> void:
+	var result := GameManager.last_combat_result
+	GameManager.last_combat_result = ""
+	if result != "victory":
+		return
+	var current_node: MapNodeData = _map_nodes.get(_current_node_id)
+	if current_node == null or current_node.node_type != MapNodeData.NodeType.BOSS:
+		return
+	_handle_boss_defeated()
+
+
+## BOSS 击败 → 黑门攻克
+func _handle_boss_defeated() -> void:
+	if not PlayerData.current_gate in PlayerData.gates_cleared:
+		PlayerData.gates_cleared.append(PlayerData.current_gate)
+	PlayerData.clear_expedition_map_state()
+	_show_narrative("门扉核心崩塌，异化波动急剧消散。\n\n第%d扇黑门已被攻克！\n\n正在返回枢纽..." % PlayerData.current_gate)
+	await get_tree().create_timer(3.0).timeout
+	GameManager.change_state(GameManager.GameState.HUB)
 
 
 ## 根据 SAN 值获取对应氛围文本池
@@ -373,12 +443,24 @@ func _on_rest() -> void:
 
 ## 撤退
 func _on_retreat() -> void:
+	PlayerData.clear_expedition_map_state()
 	SaveManager.save_game(0)
 	GameManager.change_state(GameManager.GameState.HUB)
 
 
 ## 强制撤退（SAN=0）
 func _force_retreat() -> void:
+	PlayerData.clear_expedition_map_state()
 	@warning_ignore("integer_division")
 	PlayerData.modify_resource("nano_alloy", -PlayerData.nano_alloy / 4)
 	GameManager.change_state(GameManager.GameState.HUB)
+
+
+## 保存探索地图状态（进入战斗前调用）
+func _save_expedition_state() -> void:
+	var revealed: Dictionary = {}
+	for node_id: String in _map_nodes:
+		var node: MapNodeData = _map_nodes[node_id]
+		if node.revealed:
+			revealed[node_id] = true
+	PlayerData.save_expedition_map_state(_map_seed, _map_cols, _map_rows, _current_node_id, _visited_nodes, revealed)

@@ -31,7 +31,6 @@ const COLOR_DEFAULT := Color(0.6, 0.6, 0.6)
 
 func setup(data: MapNodeData) -> void:
 	node_data = data
-	custom_minimum_size = Vector2(60, 60)
 	pressed.connect(_on_pressed)
 	update_display()
 

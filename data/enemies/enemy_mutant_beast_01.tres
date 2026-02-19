@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_mutant_beast_01"
+display_name = "变异噬齿兽"
+enemy_type = 1
+description = "四足畸变生物，移动极快，利爪可轻易撕裂金属护甲。"
+gate_range = Array[int]([1, 2, 3])
+hp = 45
+atk = 12
+def = 2
+speed = 14
+crit_rate = 0.10
+crit_damage = 1.6
+hit_rate = 1.0
+dodge_rate = 0.05
+effect_resist = 0.0
+drop_bio_electricity = 6
+drop_nano_alloy = 3
+drop_hashrate = 0
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack"])

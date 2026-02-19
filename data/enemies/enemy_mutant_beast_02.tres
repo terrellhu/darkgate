@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_mutant_beast_02"
+display_name = "变异蛛蝎"
+enemy_type = 1
+description = "多足畸变节肢动物，尾部蓄有剧毒腐液，被刺中后伤口持续溃烂。"
+gate_range = Array[int]([1, 2, 3])
+hp = 40
+atk = 9
+def = 3
+speed = 12
+crit_rate = 0.08
+crit_damage = 1.5
+hit_rate = 1.0
+dodge_rate = 0.08
+effect_resist = 0.0
+drop_bio_electricity = 7
+drop_nano_alloy = 3
+drop_hashrate = 0
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_spit"])

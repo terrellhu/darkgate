@@ -3,8 +3,6 @@
 [ext_resource type="Script" path="res://scenes/expedition/map_node_ui.gd" id="1_node"]
 
 [node name="MapNodeUI" type="Button"]
-custom_minimum_size = Vector2(60, 60)
-size_flags_horizontal = 3
-size_flags_vertical = 3
+custom_minimum_size = Vector2(36, 36)
 text = "■"
 script = ExtResource("1_node")

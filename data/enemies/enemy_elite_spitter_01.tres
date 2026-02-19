@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_elite_spitter_01"
+display_name = "腐液喷射者"
+enemy_type = 3
+description = "曾经的精神控制者残躯，口部畸变为喷射器，能持续喷出高浓度腐蚀液。"
+gate_range = Array[int]([1, 2, 3])
+hp = 100
+atk = 13
+def = 4
+speed = 10
+crit_rate = 0.07
+crit_damage = 1.5
+hit_rate = 1.0
+dodge_rate = 0.05
+effect_resist = 0.08
+drop_bio_electricity = 14
+drop_nano_alloy = 5
+drop_hashrate = 4
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_spit", "skill_enemy_howl"])

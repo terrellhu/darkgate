@@ -51,6 +51,14 @@ var explored_nodes: Dictionary = {}  ## 已探索节点 { "gate_N": [node_ids] }
 var current_san: float = MAX_SAN
 var current_mental_link: float = 100.0
 
+# ========== 探索地图持久化（跨战斗保留） ==========
+var _expedition_map_seed: int = 0
+var _expedition_map_cols: int = 0
+var _expedition_map_rows: int = 0
+var _expedition_current_node_id: String = ""
+var _expedition_visited_nodes: Dictionary = {}
+var _expedition_revealed_nodes: Dictionary = {}
+
 
 ## 修改资源并发送信号
 func modify_resource(resource_type: String, amount: int) -> void:
@@ -301,6 +309,44 @@ func set_character_aberration(char_id: String, value: float) -> void:
 func reset_expedition_state() -> void:
 	current_san = MAX_SAN
 	current_mental_link = 100.0
+	clear_expedition_map_state()
+
+
+## 保存探索地图状态（进入战斗前调用）
+func save_expedition_map_state(map_seed: int, cols: int, rows: int, current_node: String, visited: Dictionary, revealed: Dictionary) -> void:
+	_expedition_map_seed = map_seed
+	_expedition_map_cols = cols
+	_expedition_map_rows = rows
+	_expedition_current_node_id = current_node
+	_expedition_visited_nodes = visited.duplicate()
+	_expedition_revealed_nodes = revealed.duplicate()
+
+
+## 是否有已保存的探索地图状态
+func has_expedition_map_state() -> bool:
+	return not _expedition_current_node_id.is_empty()
+
+
+## 获取已保存的探索地图状态
+func get_expedition_map_state() -> Dictionary:
+	return {
+		"seed": _expedition_map_seed,
+		"cols": _expedition_map_cols,
+		"rows": _expedition_map_rows,
+		"current_node_id": _expedition_current_node_id,
+		"visited_nodes": _expedition_visited_nodes,
+		"revealed_nodes": _expedition_revealed_nodes,
+	}
+
+
+## 清除探索地图状态
+func clear_expedition_map_state() -> void:
+	_expedition_map_seed = 0
+	_expedition_map_cols = 0
+	_expedition_map_rows = 0
+	_expedition_current_node_id = ""
+	_expedition_visited_nodes.clear()
+	_expedition_revealed_nodes.clear()
 
 
 ## 消耗精神力（主角能力代价）

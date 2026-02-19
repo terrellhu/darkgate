@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_mech_abom_01"
+display_name = "废铁傀儡"
+enemy_type = 2
+description = "被异化能量重新驱动的破损机器人，动作迟缓但装甲坚硬。"
+gate_range = Array[int]([1, 2, 3])
+hp = 75
+atk = 8
+def = 8
+speed = 5
+crit_rate = 0.03
+crit_damage = 1.5
+hit_rate = 0.95
+dodge_rate = 0.0
+effect_resist = 0.10
+drop_bio_electricity = 5
+drop_nano_alloy = 5
+drop_hashrate = 1
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_slam"])

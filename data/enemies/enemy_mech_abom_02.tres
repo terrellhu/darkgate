@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_mech_abom_02"
+display_name = "破损哨卫"
+enemy_type = 2
+description = "半毁的安保机器人，核心被异化结晶侵蚀，偶尔会释放干扰电波。"
+gate_range = Array[int]([1, 2, 3])
+hp = 65
+atk = 9
+def = 6
+speed = 7
+crit_rate = 0.05
+crit_damage = 1.5
+hit_rate = 1.0
+dodge_rate = 0.0
+effect_resist = 0.05
+drop_bio_electricity = 6
+drop_nano_alloy = 4
+drop_hashrate = 2
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_howl"])

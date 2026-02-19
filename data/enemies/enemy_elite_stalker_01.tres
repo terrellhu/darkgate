@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "enemy_elite_stalker_01"
+display_name = "暗影潜行者"
+enemy_type = 1
+description = "高速异化猎手，在黑暗中几乎不可见，利爪划过之处血流不止。"
+gate_range = Array[int]([1, 2, 3])
+hp = 90
+atk = 16
+def = 3
+speed = 18
+crit_rate = 0.18
+crit_damage = 1.8
+hit_rate = 1.0
+dodge_rate = 0.15
+effect_resist = 0.05
+drop_bio_electricity = 12
+drop_nano_alloy = 5
+drop_hashrate = 3
+drop_item_ids = Array[String]([])
+drop_item_rates = Array[float]([])
+skill_ids = Array[String](["skill_common_attack", "skill_enemy_bite", "skill_enemy_spit"])

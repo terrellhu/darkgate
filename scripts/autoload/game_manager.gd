@@ -12,6 +12,7 @@ enum GameState {
 var current_state: GameState = GameState.MAIN_MENU
 var previous_state: GameState = GameState.MAIN_MENU
 var pending_combat_enemy_ids: Array[String] = []
+var last_combat_result: String = ""  ## "victory" / "defeat" / ""
 
 ## 场景路径映射
 const SCENE_PATHS := {

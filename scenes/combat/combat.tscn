@@ -37,6 +37,7 @@ text = "— 敌方 —"
 horizontal_alignment = 1
 
 [node name="EnemyList" type="HBoxContainer" parent="EnemyArea"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
@@ -72,6 +73,7 @@ text = "— 我方 —"
 horizontal_alignment = 1
 
 [node name="AllyList" type="HBoxContainer" parent="AllyArea"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
