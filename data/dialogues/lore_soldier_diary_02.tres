@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_soldier_diary_02"
+event_type = 0
+description = "【数据终端 - 军人日记】
+第七机动旅，二等兵 赵雪晴
+崩溃后第11天
+
+弹药快用完了。
+
+从前天开始出现了一种新型孽体——我们叫它们'回声者'。它们会模仿人类的声音。昨晚哨兵听到有人在喊'救命'，打开门后被三只回声者撕成了碎片。
+
+那个声音是连长的声音。连长在崩溃第一天就变异了。
+
+我开始怀疑它们不是在模仿。它们是在回忆。那些声音是它们还是人类时发出的最后的声音，被永远困在了变异后的喉咙里。
+
+这个想法比任何怪物都可怕。"
+san_change = -3.0
+low_san_description = "你放下日记，远处传来一声呼喊。那是你队友的声音——但你的队友就在身边。他们面面相觑。那声音又响了一次，这次更近了。"
+critical_san_description = "日记后面还有一页，字迹潦草到几乎无法辨认：'它们不是在回忆。它们在预言。它们喊出的是你将来会发出的最后的声音。'"

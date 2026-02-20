@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_04"
+event_type = 2
+description = "一个幸存者留下的简易陷阱网络覆盖了整条走廊——绊线、压力板、改装过的电击装置。显然是为了防御孽体入侵。
+
+但陷阱的主人早已不在了。你需要小心地穿过这片陷阱区域，否则就得原路返回浪费宝贵的时间。
+
+队伍中最敏锐的成员能否识破所有陷阱？"
+check_attribute = "speed"
+check_threshold = 18
+success_result_id = "event_check_04_success"
+failure_result_id = "event_check_04_failure"
+low_san_description = "绊线在黑暗中发出微光，像蜘蛛网一样美丽。你仔细看——那不是绊线，那真的是蜘蛛网。巨大的、由人类头发编织的蜘蛛网。编织者就在天花板上，有八条腿和一张人类的脸。"
+critical_san_description = "走廊没有尽头。陷阱在身后重新生长出来。你已经在这条走廊里走了一千年。你一直在走。你将永远在走。"

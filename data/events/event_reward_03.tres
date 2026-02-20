@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_reward_03"
+event_type = 4
+description = "一辆军用运输车被半埋在碎石堆下。驾驶室已经被压扁，但后面的装甲货舱完好无损。撬开舱门后，你们找到了一批军用物资：弹药箱、能量电池和一套完整的战术装备。
+
+车门内侧刻着一行字：'第七机动旅，最后一批补给。送不出去了。谁找到就拿去用吧。'"
+san_change = 1.0
+bio_electricity_change = 8
+item_rewards = ["item_body_armor_01"]
+low_san_description = "货舱里的物资比你预期的多得多。多到不正常。你往深处走——物资堆的尽头是另一扇门。门上贴着纸条：'不要打开。里面的东西只是看起来像补给。'但你已经把那些东西装进背包了。"
+critical_san_description = "驾驶室没有被压扁。司机还活着，或者说——他和车融为了一体。他的皮肤是钢铁，血管是油管。他用引擎的轰鸣声说话：'终于有人来取货了。'"

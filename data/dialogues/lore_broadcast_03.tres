@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_broadcast_03"
+event_type = 0
+description = "【数据终端 - 加密军事频道截获】
+来源：未知
+日期：大崩溃前72小时
+解密状态：部分解密
+
+'苍穹计划最终阶段确认。九号门体稳定运行。基因改写载荷已调校完毕。'
+
+'预计全球覆盖时间：T+24小时。Y染色体携带者改写率预估99.9%。免疫概率低于百万分之一。'
+
+'提醒：此行动不可逆。授权码已由九位理事会成员确认。'
+
+'记录显示异议者为 [数据损毁] 博士，其反对意见已归档。该异议者已从项目中移除。'
+
+[文件末尾附注]
+'当人类有一天质问我们为什么这么做时，答案只有一个：因为旧的人类不够好。'"
+san_change = -4.0
+low_san_description = "文件的加密部分突然解锁了。里面只有一行字：'免疫者并非漏网之鱼。免疫者是对照组。你被留下来是有目的的。'后面是一串你看不懂的基因序列——但你的身体认识它。你的细胞在共振。"
+critical_san_description = "你是九位理事会成员之一。授权码是你签发的。你只是忘记了。黑门在等你想起来。"

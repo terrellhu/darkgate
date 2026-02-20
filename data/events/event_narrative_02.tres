@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_narrative_02"
+event_type = 0
+description = "一辆翻倒的校车横在马路中央，车身布满弹孔和抓痕。透过碎裂的车窗，你看到座椅上整齐排列着十几个小书包——粉色的、蓝色的、印着卡通图案的。
+
+车内没有尸体。只有书包。
+
+副驾驶位的仪表盘上贴着一张手写便签：'已转移至B-7避难所。上帝保佑。'"
+san_change = -4.0
+low_san_description = "校车里传来孩子们的笑声。你趴在车窗上往里看——书包自己打开了，课本的纸页在没有风的车厢里翻动。一支蜡笔从书包里滚出来，在地板上画出一行歪歪扭扭的字：'妈妈什么时候来接我们？'"
+critical_san_description = "校车在你面前缓缓启动了。一个没有脸的司机坐在驾驶座上，转过头对你点了点头。车内的书包全部膨胀起来，变成了蠕动的肉团。你看到自己的名字绣在其中一个书包上。"

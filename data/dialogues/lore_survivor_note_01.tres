@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_survivor_note_01"
+event_type = 0
+description = "【墙壁涂鸦 - 幸存者留言】
+
+用碳笔写在商场的防火门上，字迹歪斜但清晰：
+
+'给任何看到这段话的人：
+1. 白天移动，晚上躲藏
+2. 孽体怕火但不怕光
+3. 它们能闻到血腥味（500米范围）
+4. 如果你听到有人叫你的名字——不要回应，那不是人
+5. 地铁隧道是安全通道，但不要停留太久
+6. 最重要的：不要独处。孤独会让你先于身体崩溃
+
+我们在北边的旧水厂。如果你还活着，来找我们。
+——阿玲，以及剩下的12个人'"
+san_change = 1.0
+low_san_description = "留言的字迹在你注视的过程中改变了。第4条变成了：'如果你听到有人叫你的名字——那是我。我在叫你。但我已经不是人了。快跑。'署名处多了一行：'只剩2个人了。'"
+critical_san_description = "你认识阿玲的字迹。因为阿玲就是你。你写过这段留言。旧水厂没有人。从来没有。这是你留给自己的遗书。"

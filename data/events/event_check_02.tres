@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_02"
+event_type = 2
+description = "一座摇摇欲坠的天桥横跨在两栋废弃高楼之间。桥面已经断裂了一半，剩余的部分布满裂纹，钢筋裸露。
+
+天桥对面能看到一个完整的补给站。绕行的话需要穿过地面层的孽体巢穴区域。
+
+你的先锋队员能否快速通过这座随时会崩塌的天桥？"
+check_attribute = "speed"
+check_threshold = 20
+success_result_id = "event_check_02_success"
+failure_result_id = "event_check_02_failure"
+low_san_description = "天桥在你面前弯曲了，变成了一条巨大的舌头。对面的补给站是一颗牙齿。你站在一张嘴的边缘。风从喉咙深处吹来，温热而潮湿。"
+critical_san_description = "没有天桥。没有高楼。你站在一片无边的虚空中，脚下的地面是透明的。虚空的底部有什么东西在看着你，它太大了，你只能看到一只眼睛。"

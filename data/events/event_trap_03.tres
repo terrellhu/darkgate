@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_trap_03"
+event_type = 3
+description = "脚下的地板突然变得柔软而粘稠。你低头一看——水泥地面正在被一种黑色的有机物质侵蚀替换。这是一片伪装成地面的异化菌毯！
+
+菌毯以惊人的速度向四周蔓延，试图包裹住每个人的双脚。它散发的气味令人头晕目眩，其中混合着某种精神抑制成分。"
+san_change = -6.0
+bio_electricity_change = -4
+low_san_description = "菌毯是温暖的。它包裹住你的脚踝时，你感到一种久违的安全感——就像小时候被母亲的毛毯裹住。你不想离开。你的队友在叫你，但他们的声音越来越远。菌毯在向你的膝盖攀爬。很舒服。"
+critical_san_description = "菌毯下面有脸。成百上千张脸，全都在微笑。你认出了其中一些——他们曾经是人类。现在他们是地板的一部分。他们看起来很幸福。你放松了脚踝。"

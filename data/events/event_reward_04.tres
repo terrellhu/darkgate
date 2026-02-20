@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_reward_04"
+event_type = 4
+description = "商业区的一台ATM机引起了你的注意——不是因为钱（现在没人在乎钱了），而是因为有人把它改装成了一个小型物资储藏柜。
+
+密码锁上贴着一张纸条：'密码是我女儿的生日。0901。如果你能看到这张纸条，说明你还是人类。拿走你需要的。活下去。——一个父亲。'"
+san_change = 5.0
+bio_electricity_change = 4
+low_san_description = "你输入了0901。ATM机发出了一声叹息。屏幕上显示的不是余额，而是一段视频：一个男人抱着小女孩在公园里旋转。小女孩笑得很开心。然后男人的手开始变黑。视频结束。物资从出钞口滑出来。"
+critical_san_description = "密码不是0901。密码是你的生日。纸条上的字迹是你的字迹。ATM机里装的不是物资——是一封写给未来的你的信。但你不敢读完它。"

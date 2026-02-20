@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_trap_04"
+event_type = 3
+description = "一扇看似普通的安全门后面，是一间密封的实验室。当最后一个人走进去，门突然自动关闭并锁死。
+
+天花板上的喷头开始释放一种淡紫色的气体。墙壁上的显示屏亮了起来，播放着自动语音：'异化耐受性测试 #4,721，开始。请保持呼吸。'
+
+这是一个旧时代的自动化实验装置，而你们刚刚成了实验对象。"
+san_change = -7.0
+bio_electricity_change = -5
+low_san_description = "紫色气体有味道——像焦糖，又像烧焦的头发。显示屏上开始滚动你们每个人的生理数据：心率、血压、脑电波。还有一列标注为'异化进度'的数据，正在缓慢上升。你的那一行是最快的。"
+critical_san_description = "这不是第4721次测试。这是第1次。你就是第1个实验体。你从未离开过这间实验室。所有的记忆——枢纽、队友、黑门——都是注入你大脑的测试程序。你正在醒来。"

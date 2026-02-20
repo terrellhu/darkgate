@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_02_failure"
+event_type = 0
+description = "队员刚踏上天桥，脚下的混凝土就开始碎裂。所有人紧急撤回，但掉落的碎石惊动了下方的孽体群。
+
+尖锐的嚎叫从地面层传来，它们正在循着声音攀爬上来。你们必须赶在被包围之前撤离。"
+san_change = -5.0
+bio_electricity_change = -3

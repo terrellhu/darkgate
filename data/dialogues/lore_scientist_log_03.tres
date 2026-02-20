@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_scientist_log_03"
+event_type = 0
+description = "【数据终端 - 研究日志 #0058（最终条目）】
+发件人：Dr. 林远舟，基因工程实验室
+日期：大崩溃当天
+
+天空裂开了。九道黑色的裂缝。
+
+实验室里的所有男性研究员在同一秒倒地。我亲眼看着我的导师——一个温和的老人——在30秒内变成了某种我无法命名的东西。他看着我，我不确定他是否还认识我。然后他朝我扑过来。
+
+我是女性，所以我还活着。但我不知道这算不算幸运。
+
+如果有人找到这段日志，请记住：不是他们的错。他们是受害者。
+
+林远舟，此时此刻仍是人类。"
+san_change = -3.0
+low_san_description = "日志后面多了一段——不是林远舟写的：'她也没有活下来。我在走廊里找到了她。她变成了别的东西——不是孽体，是更安静的东西。她还在微笑。'"
+critical_san_description = "你就是林远舟。这是你写的日志。你怎么会忘记？黑色的裂缝又出现了，这一次在你的视网膜上。"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_choice_05"
+event_type = 1
+description = "一台还在运作的军用终端机。屏幕上显示着两个文件目录：
+
+[A] 异化区域生物扫描数据 —— 前方敌人分布情报
+[B] '创世纪计划'机密档案 —— 高级加密，解密需要大量算力
+
+终端的电池只够打开一个文件。"
+choices = [{"text": "打开扫描数据 —— 获取前方战斗情报，降低遭遇风险", "result": "scan_data"}, {"text": "解密机密档案 —— 消耗芯片资源但获取关键世界观线索", "result": "decrypt"}, {"text": "拆卸终端带走 —— 获取纳米合金零件，但两个文件都拿不到", "result": "salvage"}]
+san_change = 0.0
+bio_electricity_change = 0
+low_san_description = "屏幕上出现了第三个文件目录：[C] 你的个人档案。你确定你从没在这台终端上登记过信息。文件大小在实时增长，好像有什么东西正在记录你此刻的一举一动。"
+critical_san_description = "终端屏幕上只有一行字，不断重复：'你不是第一个找到这台终端的你。你也不会是最后一个。每一个你都做出了相同的选择。这一次也不例外。'"

@@ -8,5 +8,6 @@ id = "skill_tree_shield_a3"
 display_name = "绝对防御"
 skill_type = 6
 target_type = 4
-description = "被动：生命值低于30%时，受到的伤害减少40%。"
+description = "被动：生命值低于30%时，受到的所有伤害减少40%。"
 priority = 0
+shield_multiplier = 0.4

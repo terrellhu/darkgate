@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_02_success"
+event_type = 4
+description = "先锋队员身手矫健地冲过了天桥！就在最后一人通过的瞬间，桥面轰然崩塌。碎石坠入深渊，激起一阵灰尘。
+
+补给站内的物资相当丰富，足够支撑接下来的探索。"
+san_change = 2.0
+bio_electricity_change = 8

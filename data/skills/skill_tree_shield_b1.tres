@@ -10,3 +10,4 @@ skill_type = 6
 target_type = 4
 description = "被动：受到物理攻击时反弹15%伤害给攻击者。"
 priority = 0
+damage_multiplier = 0.15

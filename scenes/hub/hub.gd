@@ -5,6 +5,7 @@ const TeamPanelScene := preload("res://scenes/ui/team_panel.tscn")
 const PreparationPanelScene := preload("res://scenes/ui/preparation_panel.tscn")
 const FacilityPanelScene := preload("res://scenes/ui/facility_panel.tscn")
 const GrowthPanelScene := preload("res://scenes/ui/growth_panel.tscn")
+const ToastNotification := preload("res://scenes/ui/toast_notification.gd")
 
 const FACILITY_SLOT_MAP := {
 	"ReactorSlot": "reactor",
@@ -15,11 +16,14 @@ const FACILITY_SLOT_MAP := {
 	"DataLabSlot": "data_lab",
 }
 
+var _prev_resources: Dictionary = {}
+
 
 func _ready() -> void:
 	_collect_facility_production()
 	_update_resource_display()
 	_update_facility_display()
+	_snapshot_resources()
 	EventBus.resource_changed.connect(_on_resource_changed)
 	EventBus.facility_upgraded.connect(_on_facility_upgraded)
 
@@ -81,13 +85,34 @@ func _update_facility_display() -> void:
 			label.text = "%s  Lv.%d  工人:%d" % [config.display_name, level, workers]
 
 
-func _on_resource_changed(_resource_type: String, _new_value: int) -> void:
+func _snapshot_resources() -> void:
+	_prev_resources = {
+		"bio_electricity": PlayerData.bio_electricity,
+		"nano_alloy": PlayerData.nano_alloy,
+		"hashrate": PlayerData.hashrate,
+		"chips": PlayerData.chips,
+		"credits": PlayerData.credits,
+	}
+
+
+func _on_resource_changed(resource_type: String, new_value: int) -> void:
 	_update_resource_display()
+	var prev: int = _prev_resources.get(resource_type, new_value)
+	var delta: int = new_value - prev
+	_prev_resources[resource_type] = new_value
+	if delta == 0:
+		return
+	var sign_str := "+" if delta > 0 else ""
+	var color := Color.GREEN_YELLOW if delta > 0 else Color.TOMATO
+	ToastNotification.show_toast(self, "%s %s%d" % [_resource_display_name(resource_type), sign_str, delta], color)
 
 
-func _on_facility_upgraded(_facility_id: String, _new_level: int) -> void:
+func _on_facility_upgraded(facility_id: String, new_level: int) -> void:
 	_update_facility_display()
 	_update_resource_display()
+	var config: FacilityData = DataManager.get_facility(facility_id)
+	var name: String = config.display_name if config else facility_id
+	ToastNotification.show_toast(self, "%s 升级至 Lv.%d" % [name, new_level], Color.GOLD)
 
 
 func _on_facility_slot_input(event: InputEvent, facility_id: String) -> void:

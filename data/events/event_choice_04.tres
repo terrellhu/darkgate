@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_choice_04"
+event_type = 1
+description = "一名受伤的异格者瘫倒在废墟中。他的左臂已经完全异化，黑色的甲壳覆盖到肩膀。但他的右手紧紧握着一个医疗箱，眼神还保持着清明。
+
+'帮帮我……'他艰难地开口，'我还能控制自己……只需要抑制剂……医疗箱里有，但我打不开了……'
+
+他的异化手臂在不受控地抽搐。你不确定他还能维持理智多久。"
+choices = [{"text": "帮他注射抑制剂 —— 风险高但可能获得一名强大的临时盟友", "result": "help_altered"}, {"text": "拿走医疗箱离开 —— 安全获取物资，但他必死无疑", "result": "take_supplies"}, {"text": "用精神链接稳定他 —— 消耗精神力，但效果更可靠", "result": "mental_link"}]
+san_change = -3.0
+bio_electricity_change = 0
+low_san_description = "他的异化手臂突然伸长了两米，像蛇一样缠住了身边的钢筋。那只手的指尖长出了眼睛，正在观察你。'帮帮我'——但现在你分不清这句话是从他嘴里还是从那些眼睛里发出的。"
+critical_san_description = "你看清了他的脸。那是你自己的脸，只是更老、更疲惫。异化的手臂是你的左臂。医疗箱里没有抑制剂——只有一面镜子。"

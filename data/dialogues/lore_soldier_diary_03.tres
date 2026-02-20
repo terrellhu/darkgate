@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_soldier_diary_03"
+event_type = 0
+description = "【数据终端 - 军人日记（最终条目）】
+第七机动旅，二等兵 赵雪晴
+崩溃后第17天
+
+只剩我一个人了。
+
+最后的补给已经装上车，但驾驶员在启动引擎的时候开始变异。他不是男性——她是个女性。
+
+她不该变异的。
+
+收音机说黑门的辐射在增强。女性免疫的说法可能是错的。或者说，只是暂时的。
+
+我把补给留在了车上。密码刻在门板内侧。
+
+如果你找到了这辆车，如果你还是人类——用这些物资去战斗。
+
+别让我们白死。"
+san_change = -4.0
+low_san_description = "最后一页被血浸透了。但血迹形成了文字：'她没有死。我看到了她。她比以前更美了。她的脊柱开了花。'"
+critical_san_description = "你翻到日记的封底。上面贴着一张合影——第七机动旅全体成员。你在照片里。你站在前排，穿着军装，胸口的名牌上写着另一个名字。一个你不记得的名字。"

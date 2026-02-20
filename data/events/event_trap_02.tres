@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_trap_02"
+event_type = 3
+description = "走廊两侧的墙壁上布满了暗红色的异化结晶。当你们靠近时，结晶突然开始共振，发出刺穿颅骨的高频尖啸。
+
+这是一种异化共鸣陷阱——它直接攻击精神，绕过一切物理防御。队员们捂着耳朵蹲在地上，鼻孔渗出血丝。
+
+你必须带领队伍强行冲过这段区域。"
+san_change = -8.0
+bio_electricity_change = -3
+low_san_description = "尖啸声变成了文字。每一个音节都刻进你的大脑皮层：'你的基因是错误的。你的存在是错误的。修正即将开始。'结晶向你伸出了触手，它们的形状像手术刀。"
+critical_san_description = "没有尖啸。你只听到了沉默。绝对的、完美的沉默。然后你意识到你已经聋了。你看到队友们在你面前尖叫，但你什么都听不到。你再也听不到了。这很好。安静真好。"

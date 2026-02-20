@@ -24,6 +24,8 @@ var _battle_ended: bool = false
 ## ========== 单位 UI 节点映射 ==========
 var _unit_labels: Dictionary = {}  ## { unit_id: Label }
 
+const DamageFloat := preload("res://scenes/ui/damage_float.gd")
+
 
 func _ready() -> void:
 	%BtnAuto.pressed.connect(_on_toggle_auto)
@@ -74,9 +76,9 @@ func setup_combat(enemy_ids: Array[String]) -> void:
 
 	## 日志：队伍与敌人信息
 	for u in _allies:
-		_log("%s  HP:%d ATK:%d DEF:%d SPD:%d" % [u.display_name, u.max_hp, u.atk, u.def_stat, u.speed])
+		_log_colored("%s  HP:%d ATK:%d DEF:%d SPD:%d" % [u.display_name, u.max_hp, u.atk, u.def_stat, u.speed], Color(0.4, 0.8, 1.0))
 	for u in _enemies:
-		_log("%s  HP:%d ATK:%d DEF:%d SPD:%d" % [u.display_name, u.max_hp, u.atk, u.def_stat, u.speed])
+		_log_colored("%s  HP:%d ATK:%d DEF:%d SPD:%d" % [u.display_name, u.max_hp, u.atk, u.def_stat, u.speed], Color(1.0, 0.5, 0.3))
 
 	if _allies.is_empty():
 		_log("无可用队员，战斗失败。")
@@ -196,14 +198,14 @@ func _end_combat(result: String) -> void:
 		"victory":
 			_state = CombatState.VICTORY
 			_log("")
-			_log("═══ 战斗胜利！ ═══")
+			_log_colored("═══ 战斗胜利！ ═══", Color(1.0, 0.85, 0.0))
 			_award_drops()
 			_award_xp()
 			_check_gate_advance()
 		"defeat":
 			_state = CombatState.DEFEAT
 			_log("")
-			_log("═══ 队伍全灭... ═══")
+			_log_colored("═══ 队伍全灭... ═══", Color(0.8, 0.1, 0.1))
 
 	## 异化值衰减 & HP 回写
 	_writeback_ally_state()
@@ -350,44 +352,77 @@ func _log(text: String) -> void:
 	%BattleLog.append_text(text + "\n")
 
 
+## BBCode 彩色日志
+func _log_colored(text: String, color: Color) -> void:
+	%BattleLog.push_color(color)
+	%BattleLog.append_text(text + "\n")
+	%BattleLog.pop()
+
+
+## 在单位标签上方生成浮动数字
+func _spawn_float(unit_id: String, amount: int, type: String) -> void:
+	var label: Label = _unit_labels.get(unit_id)
+	if label == null:
+		return
+	var float_label := DamageFloat.create(amount, type)
+	label.add_child(float_label)
+	float_label.position = Vector2(label.size.x * 0.5 - 10.0, -8.0)
+
+
 func _log_events(events: Array[Dictionary]) -> void:
 	for ev in events:
 		var t: String = ev.get("type", "")
 		match t:
 			"damage":
-				var crit_mark := " [暴击!]" if ev.get("is_crit", false) else ""
+				var amount := int(ev["amount"])
+				var is_crit: bool = ev.get("is_crit", false)
+				var crit_mark := " [暴击!]" if is_crit else ""
 				var shield_info := ""
 				if int(ev.get("shield_absorbed", 0)) > 0:
 					shield_info = " (护盾吸收%d)" % int(ev["shield_absorbed"])
-				_log("  %s 受到 %d 伤害%s%s" % [
-					_get_unit_name(ev["target"]),
-					int(ev["amount"]),
-					shield_info,
-					crit_mark])
+				var color := Color(1.0, 0.1, 0.0) if is_crit else Color(1.0, 0.4, 0.3)
+				_log_colored("  %s 受到 %d 伤害%s%s" % [
+					_get_unit_name(ev["target"]), amount, shield_info, crit_mark], color)
+				_spawn_float(ev["target"], amount, "crit" if is_crit else "damage")
 			"heal":
-				_log("  %s 恢复 %d HP" % [_get_unit_name(ev["target"]), int(ev["amount"])])
+				var amount := int(ev["amount"])
+				_log_colored("  %s 恢复 %d HP" % [_get_unit_name(ev["target"]), amount],
+					Color(0.3, 1.0, 0.4))
+				_spawn_float(ev["target"], amount, "heal")
 			"shield":
-				_log("  %s 获得 %d 护盾" % [_get_unit_name(ev["target"]), int(ev["amount"])])
+				var amount := int(ev["amount"])
+				_log_colored("  %s 获得 %d 护盾" % [_get_unit_name(ev["target"]), amount],
+					Color(0.4, 0.7, 1.0))
+				_spawn_float(ev["target"], amount, "shield")
 			"miss":
-				_log("  %s 闪避了攻击！" % _get_unit_name(ev["target"]))
+				_log_colored("  %s 闪避了攻击！" % _get_unit_name(ev["target"]),
+					Color(0.7, 0.7, 0.7))
+				_spawn_float(ev["target"], 0, "miss")
 			"kill":
-				_log("  %s 被击败！" % _get_unit_name(ev["target"]))
+				_log_colored("  %s 被击败！" % _get_unit_name(ev["target"]),
+					Color(0.8, 0.2, 0.2))
 			"status_applied":
-				_log("  %s 被施加了 [%s]" % [_get_unit_name(ev["target"]), ev["status_name"]])
+				_log_colored("  %s 被施加了 [%s]" % [_get_unit_name(ev["target"]), ev["status_name"]],
+					Color(1.0, 0.8, 0.2))
 			"status_expired":
-				_log("  %s 的 [%s] 效果消失" % [_get_unit_name(ev["target"]), ev["status_name"]])
+				_log_colored("  %s 的 [%s] 效果消失" % [_get_unit_name(ev["target"]), ev["status_name"]],
+					Color(0.6, 0.6, 0.6))
 			"dot_damage":
-				_log("  %s 受到 [%s] 伤害 %d" % [
+				var amount := int(ev["amount"])
+				_log_colored("  %s 受到 [%s] 伤害 %d" % [
 					_get_unit_name(ev["target"]),
-					ev.get("status_name", "DoT"),
-					int(ev["amount"])])
+					ev.get("status_name", "DoT"), amount],
+					Color(0.8, 0.4, 0.8))
+				_spawn_float(ev["target"], amount, "damage")
 			"aberration_gain":
-				_log("  %s 异化值 +%.0f (当前 %.0f)" % [
+				_log_colored("  %s 异化值 +%.0f (当前 %.0f)" % [
 					_get_unit_name(ev["target"]),
 					float(ev["amount"]),
-					float(ev["new_value"])])
+					float(ev["new_value"])],
+					Color(0.6, 0.2, 0.8))
 			"lost_control":
-				_log("  !! %s 失控了！攻击力暴增，但无法分辨敌我！" % _get_unit_name(ev["target"]))
+				_log_colored("  !! %s 失控了！攻击力暴增，但无法分辨敌我！" % _get_unit_name(ev["target"]),
+					Color(1.0, 0.0, 0.0))
 
 
 func _get_unit_name(unit_id: String) -> String:

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_soldier_diary_01"
+event_type = 0
+description = "【数据终端 - 军人日记】
+第七机动旅，二等兵 赵雪晴
+崩溃后第3天
+
+长官说我们的任务是保护撤离通道，让平民进入地下避难所。但没人告诉我们该怎么面对那些曾经是我们战友的东西。
+
+今天我开了12枪。其中3枪打中了……打中了我的班长。或者说，曾经的班长。他变异后还穿着军装，胸口的名牌上写着'陈卫国'。
+
+他扑向我的时候，我看到他流泪了。变异的身体在攻击，但眼泪是人类的。
+
+我这辈子都不会忘记那双眼睛。"
+san_change = -2.0
+low_san_description = "日记的墨水还没干。纸上多了几个字：'你也不会忘记。因为他就在你身后。穿着军装。流着眼泪。举着利爪。'你没有回头。"
+critical_san_description = "日记是你写的。赵雪晴是你的名字。不，你没有名字。名字被涂掉了。名牌上写着'实验体-免疫者-01'。"

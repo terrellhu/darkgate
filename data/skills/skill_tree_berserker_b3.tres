@@ -8,4 +8,6 @@ id = "skill_tree_berserker_b3"
 display_name = "不死战意"
 skill_type = 6
 target_type = 4
-description = "被动：生命值低于20%时，攻击力提升50%并获得生命吸取效果。"
+description = "被动：生命值低于20%时，攻击力提升50%并获得30%生命吸取效果。"
+damage_multiplier = 0.5
+heal_multiplier = 0.3

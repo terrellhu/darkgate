@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_04_failure"
+event_type = 0
+description = "一名队员不慎踩到了压力板，电击装置瞬间启动！强烈的电流击中了队伍前排，所幸不致命，但造成了不小的伤害。
+
+爆炸声在废墟中回荡，你们暴露了自己的位置。"
+san_change = -4.0
+bio_electricity_change = -4

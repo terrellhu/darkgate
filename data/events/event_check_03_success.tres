@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_03_success"
+event_type = 4
+description = "经过一番努力，队员们合力搬开了废车。服务器的硬盘完好无损！
+
+数据中包含了异化区域的早期勘测报告和一批加密的研究笔记。这些信息对枢纽的数据解析室极有价值。"
+san_change = 3.0
+bio_electricity_change = 3
+item_rewards = ["item_acc_link_01"]

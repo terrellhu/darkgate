@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_reward_02"
+event_type = 4
+description = "在一间塌了一半的药房里，你发现后面的仓库竟然保存完好。防潮密封箱里整齐排列着医疗用品：止血带、抗生素、还有几支珍贵的纳米修复针剂。
+
+这些物资虽然是旧时代的产品，但纳米材料几乎不会过期。对枢纽的义体诊所来说，这是一批极其宝贵的补给。"
+san_change = 3.0
+bio_electricity_change = 6
+low_san_description = "药瓶上的标签在你拿起来的时候变了。不是止血带和抗生素——全都是精神类药物。每一瓶上面都写着你的名字和服药剂量。你翻到最后一瓶，标签上写着：'最终剂量。服用后不再需要药物。'"
+critical_san_description = "仓库里不是药品。是一排排玻璃罐，里面泡着大脑。每个罐子上贴着名牌。你找到了自己的名字。罐子里的大脑动了动。"

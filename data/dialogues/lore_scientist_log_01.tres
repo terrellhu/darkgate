@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_scientist_log_01"
+event_type = 0
+description = "【数据终端 - 研究日志 #0047】
+发件人：Dr. 林远舟，基因工程实验室
+日期：大崩溃前14天
+
+Y染色体异常折叠现象已扩散至第三批样本。所有男性志愿者的端粒区域出现了相同的碱基对插入——ATCG-ATCG-GGCA——这个序列不属于任何已知生物。
+
+我向上级提交了紧急报告，建议立即终止'创世纪计划'。回复只有一行字：'继续观察。'
+
+我有一种不好的预感。这个序列在自我复制。"
+san_change = -1.0
+low_san_description = "日志的文字在你阅读时发生了变化。最后一段变成了：'你也有这个序列。我检测过你的血液。ATCG-ATCG-GGCA。它在你体内已经复制了3,847次。你还剩几天？'"
+critical_san_description = "屏幕上只有四个字母不断重复：ATCG ATCG ATCG。它们变成了你的心跳节奏。你感到自己的DNA在共振。"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_04_success"
+event_type = 4
+description = "队员凭借过人的反应力，逐一标记并安全绕过了所有陷阱。走廊尽头是那位幸存者的藏身处——虽然人已离开，但留下了不少有用的物资和一份手绘的周边地图。"
+san_change = 2.0
+bio_electricity_change = 5

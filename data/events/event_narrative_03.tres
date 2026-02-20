@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_narrative_03"
+event_type = 0
+description = "地铁站入口处，一台自动售票机还在运作。屏幕不断滚动着同一条信息：'末班车已发出。请所有乘客前往最近的避难所。'
+
+售票机前散落着几百枚硬币和纸钞。显然有人在最后时刻还试图买一张车票。墙壁上用喷漆写着一行字：'地铁不会来了。'"
+san_change = -2.0
+low_san_description = "售票机的屏幕突然变了。它开始显示你队友们的名字和照片，旁边标注着'单程票'。价格栏写着'1条命'。你想关掉屏幕，但它开始播放你不记得录过的视频——视频里的你正在变异。"
+critical_san_description = "地铁来了。隧道深处传来轰鸣声，一辆锈迹斑斑的列车缓缓驶入站台。车厢里挤满了灰色的人形——他们没有五官，但全部面朝你。车门打开了。他们在等你上车。"

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_broadcast_01"
+event_type = 0
+description = "【数据终端 - 紧急广播录音】
+频率：紧急公共频道 121.5 MHz
+日期：大崩溃当天
+
+[嘈杂的静电声]
+
+'这里是中央应急指挥部——请所有市民立即前往最近的地下避难所。重复，立即——'
+
+[爆炸声]
+
+'——天空出现了不明物体——九个——确认九个——'
+
+[尖叫声和枪声]
+
+'所有武装力量注意，被变异的平民不再是——我是说——上帝啊他们之前还在——'
+
+[长达10秒的沉默]
+
+'如果有人能听到这段广播……我们失守了。所有的防线……都不管用。它们太多了。太多了。'
+
+[广播终止]"
+san_change = -2.0
+low_san_description = "广播没有终止。在沉默之后，一个完全不同的声音——平静、低沉、不像人类的频率——开始说话：'撤离已完成。样本收集率99.9%。遗漏个体：1。正在定位。'你感到后颈一阵刺痛。"
+critical_san_description = "广播里的声音变成了你自己的。你正在播报自己的坐标。你试图闭嘴，但声音不是从你的嘴里发出的——是从你的骨头里。"

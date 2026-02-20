@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_narrative_06"
+event_type = 0
+description = "一座小教堂的废墟中，十几具尸体围坐成一圈。他们手牵着手，头低垂着，姿态安详。圆圈的中心放着一台老式收音机，早已没电。
+
+墙壁上用血写着：'我们选择作为人类死去。'
+
+从尸体的状态来看，他们是在变异开始之前自行了断的。收音机旁放着一张CD，封面是贝多芬的《欢乐颂》。"
+san_change = -5.0
+low_san_description = "收音机突然发出沙沙的静电声，然后开始播放《欢乐颂》。尸体们的手开始轻轻晃动，像在打拍子。你听到他们在跟着哼唱——声音从腐烂的喉咙里挤出来，走调但虔诚。圆圈中间空出了一个位置。"
+critical_san_description = "他们抬起头看着你。他们的脸是你认识的每一个人。你的父母、你的朋友、你的队友。他们朝你伸出手：'我们等了你很久。坐下来。一起唱。'"

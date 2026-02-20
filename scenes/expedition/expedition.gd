@@ -4,6 +4,7 @@ extends Control
 
 const MapNodeUIScene := preload("res://scenes/expedition/map_node_ui.tscn")
 const MapGeneratorScript := preload("res://scripts/expedition/map_generator.gd")
+const ToastNotification := preload("res://scenes/ui/toast_notification.gd")
 
 # ========== 地图状态 ==========
 var _map_nodes: Dictionary = {}  ## { id: MapNodeData }
@@ -66,6 +67,10 @@ func _ready() -> void:
 	var all_events := DataManager.get_all_events()
 	for event_id: String in all_events:
 		_event_ids.append(event_id)
+
+	# 初始化追踪值
+	_last_san = PlayerData.current_san
+	_last_link = PlayerData.current_mental_link
 
 	# UI 连接（先连接，地图稍后渲染）
 	_update_status_bars()
@@ -493,13 +498,35 @@ func _update_status_bars() -> void:
 	%LinkBar.value = PlayerData.current_mental_link
 
 
+var _last_san: float = 100.0
+var _last_link: float = 100.0
+
+
 func _on_san_updated(new_value: float) -> void:
 	%SanBar.value = new_value
 	_update_narrative_style(new_value)
+	## SAN 变化提示
+	var delta := new_value - _last_san
+	if absf(delta) >= 1.0:
+		var text := "理智 %+.0f" % delta
+		var color := Color(0.3, 1.0, 0.4) if delta > 0 else Color(1.0, 0.3, 0.2)
+		ToastNotification.show_toast(self, text, color)
+		## 阈值警告
+		if new_value < 10.0 and _last_san >= 10.0:
+			ToastNotification.show_toast(self, "!! 理智崩溃边缘 !!", Color(1.0, 0.0, 0.0))
+		elif new_value < 40.0 and _last_san >= 40.0:
+			ToastNotification.show_toast(self, "! 理智低下 - 幻觉加重 !", Color(0.8, 0.3, 0.8))
+	_last_san = new_value
 
 
 func _on_mental_link_updated(new_value: float) -> void:
 	%LinkBar.value = new_value
+	var delta := new_value - _last_link
+	if absf(delta) >= 1.0:
+		var text := "精神链接 %+.0f" % delta
+		var color := Color(0.4, 0.7, 1.0) if delta > 0 else Color(0.8, 0.5, 0.2)
+		ToastNotification.show_toast(self, text, color)
+	_last_link = new_value
 
 
 ## 根据SAN值调整叙事文本风格

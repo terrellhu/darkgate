@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_choice_02"
+event_type = 1
+description = "前方的十字路口被一面巨大的异化肉壁封堵了。肉壁表面布满脉动的血管和半透明的囊泡，隐约能看到内部有什么东西在蠕动。
+
+肉壁的左侧有一条狭窄的缝隙，勉强够一个人侧身通过。右侧则是一段塌陷的天花板，可以尝试攀爬绕行。"
+choices = [{"text": "强行穿过缝隙 —— 速度快但可能感染异化孢子", "result": "squeeze"}, {"text": "从天花板攀爬绕行 —— 安全但消耗体力", "result": "climb"}, {"text": "用火焰烧开通路 —— 消耗生物电但彻底清除", "result": "burn"}]
+san_change = -2.0
+bio_electricity_change = 0
+low_san_description = "肉壁在呼吸。那些囊泡里装的是人脸——他们还活着，嘴巴一张一合地说着无声的话。缝隙不是缝隙，是一道微笑的嘴唇。它在邀请你进入。"
+critical_san_description = "肉壁是你的身体。那些血管是你的血管。你就是这面墙。你一直都是这面墙。你感到自己正在从内部观察着自己的队伍。"

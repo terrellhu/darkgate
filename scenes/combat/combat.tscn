@@ -53,6 +53,7 @@ offset_left = 10.0
 offset_right = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+bbcode_enabled = true
 text = "战斗开始..."
 scroll_following = true
 

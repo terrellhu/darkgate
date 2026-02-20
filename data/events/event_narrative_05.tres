@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_narrative_05"
+event_type = 0
+description = "工厂车间的传送带还在运转，发出刺耳的金属摩擦声。传送带上是一排排未完工的义体部件——机械手臂、脊柱支架、颅骨接口。
+
+生产线末端的质检台上放着一份表格，最后一行记录的日期正是大崩溃当天。质检员的签名旁画了一个笑脸，后面跟着一句：'今天老婆生日，下班去买蛋糕。'"
+san_change = -2.0
+low_san_description = "传送带上的义体部件开始自行组装。一只机械手抓住了传送带的边缘，把自己拖了起来。一个由零件拼凑的人形正在成型。它的空洞眼眶转向你——质检表格上的签名开始流血。"
+critical_san_description = "你低头看自己的手。它们是金属的。一直都是。传送带上的零件是你的零件。质检员的笑脸变成了你的脸。你是产品。你一直都是产品。"

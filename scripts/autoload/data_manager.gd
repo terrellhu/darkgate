@@ -10,6 +10,7 @@ var _skills: Dictionary = {}
 var _events: Dictionary = {}
 var _facilities: Dictionary = {}
 var _skill_trees: Dictionary = {}
+var _dialogues: Dictionary = {}
 
 ## 数据目录路径
 const DATA_PATHS := {
@@ -20,6 +21,7 @@ const DATA_PATHS := {
 	"events": "res://data/events/",
 	"facilities": "res://data/facilities/",
 	"skill_trees": "res://data/skill_trees/",
+	"dialogues": "res://data/dialogues/",
 }
 
 
@@ -36,6 +38,7 @@ func _load_all_data() -> void:
 	_events = _load_resources_from_dir(DATA_PATHS["events"])
 	_facilities = _load_resources_from_dir(DATA_PATHS["facilities"])
 	_skill_trees = _load_resources_from_dir(DATA_PATHS["skill_trees"])
+	_dialogues = _load_resources_from_dir(DATA_PATHS["dialogues"])
 
 
 ## 重新加载所有静态配置（调试/热更新时可调用）
@@ -178,6 +181,19 @@ func get_skills_by_ids(skill_ids: Array[String]) -> Array[SkillData]:
 		if skill != null:
 			result.append(skill)
 	return result
+
+
+## 获取叙事碎片数据
+func get_dialogue(id: String) -> Resource:
+	var res: Resource = _dialogues.get(id)
+	if res == null:
+		push_error("DataManager: 找不到叙事碎片配置 id=%s（检查 %s）" % [id, DATA_PATHS["dialogues"]])
+	return res
+
+
+## 获取所有叙事碎片
+func get_all_dialogues() -> Dictionary:
+	return _dialogues
 
 
 ## 获取事件数据

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_broadcast_02"
+event_type = 0
+description = "【数据终端 - 避难所广播】
+来源：B-12地下避难所
+日期：崩溃后第23天
+
+'各位居民，今天的配给将在14:00发放。请携带配给卡到三区食堂领取。'
+
+'提醒：C区隔离墙外的异响不影响安全。请不要靠近隔离墙。'
+
+'重要通知：从明天起，避难所将执行灯火管制。所有非必要照明在20:00后关闭。这是为了节约发电机燃料，不是因为——重复——不是因为光线会吸引外面的东西。请不要传播恐慌。'
+
+'最后：如果有人在夜间听到隔离墙内侧有敲门声，请忽略。那不是人类的手。'"
+san_change = -1.0
+low_san_description = "广播最后多了一段，播音员的语气完全变了——急促、颤抖：'撤销以上内容。隔离墙失守了。C区已经——它们学会了开门。它们学会了用钥匙。谁教的它们？谁他妈教的它们？！'"
+critical_san_description = "你就在B-12避难所里。你一直都在。配给卡在你的口袋里。上面印着你的照片，但照片在缓慢变异。"

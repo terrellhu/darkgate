@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_narrative_04"
+event_type = 0
+description = "一面倒塌的墙壁后面是一间公寓。桌上摆着两副碗筷，饭菜早已腐烂发黑。冰箱门上贴着一张孩子画的蜡笔画——画里有一个高大的男人牵着一个小女孩的手。
+
+男人的画像被用力涂抹掉了，蜡笔几乎把纸划破。女孩的手变成了空的。
+
+厨房地板上有一道长长的拖拽痕迹，延伸到卧室的门口。门从里面反锁了。"
+san_change = -3.0
+low_san_description = "卧室的门后传来吃东西的声音。咀嚼、吞咽、骨头断裂。蜡笔画上被涂抹掉的男人重新出现了，但这次他的笑容裂到了耳根，手上的指甲变成了黑色的爪子。小女孩还在牵着他的手。"
+critical_san_description = "你拿起蜡笔画，发现背面也有一幅画。画的是你。你正站在这间公寓里，看着这幅画。画中的你身后站着一个黑色的影子。你缓缓回头。"

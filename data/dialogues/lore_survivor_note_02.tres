@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_survivor_note_02"
+event_type = 0
+description = "【便签纸 - 冰箱贴留言】
+
+贴在一台倒在地上的冰箱门上，用彩色便签纸写成：
+
+[粉色] '老公，今晚加班吗？冰箱里有你爱吃的红烧肉。——小敏'
+[蓝色] '知道了，可能要晚点。给贝贝讲完故事再睡。'
+[粉色] '她又问爸爸为什么总加班了。'
+[蓝色] '周末带她去动物园？'
+[粉色] '好！她最想看熊猫！'
+
+最后一张便签是红色的，字迹颤抖：
+[红色] '老公变了。贝贝不要出来。妈妈堵住门。不管听到什么声音都不要开门。妈妈爱你。'"
+san_change = -3.0
+low_san_description = "冰箱门自己打开了。里面没有红烧肉。里面有一个小女孩蜷缩在隔层上，抱着一只熊猫玩偶。她抬头看着你：'你是爸爸吗？妈妈说爸爸会变回来的。你变回来了吗？'"
+critical_san_description = "便签上全部是你的字迹。两种颜色都是。你同时是丈夫和妻子。你同时在门外和门内。你听到自己在敲门。"

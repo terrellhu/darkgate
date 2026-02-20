@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_check_03"
+event_type = 2
+description = "地下停车场深处传来微弱的电子蜂鸣声。循声找去，你发现了一台被废车掩埋的军用服务器。指示灯还在闪烁——里面可能存有大崩溃前的重要数据。
+
+但服务器被三辆叠压在一起的废车死死卡住，需要足够的力量才能搬开障碍。"
+check_attribute = "def"
+check_threshold = 22
+success_result_id = "event_check_03_success"
+failure_result_id = "event_check_03_failure"
+low_san_description = "蜂鸣声不是来自服务器，而是来自废车里。那些车的引擎在发动——不是机械的声音，而是心跳。每辆车都有了自己的脉搏。它们知道你来了。"
+critical_san_description = "你就是那台服务器。你体内存储着所有数据。那些废车不是在压着服务器，它们在压着你。你感到自己的骨骼在金属的重量下弯曲。"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lore_scientist_log_02"
+event_type = 0
+description = "【数据终端 - 研究日志 #0051】
+发件人：Dr. 林远舟，基因工程实验室
+日期：大崩溃前7天
+
+实验室出事了。第一批志愿者中的3号和7号在夜间发生了急性基因崩溃。监控显示他们在23:41开始抽搐，23:43骨骼结构开始重组，23:47——
+
+我不想描述23:47之后的画面。
+
+安保人员用了整整一个弹匣才终止了3号的活动。7号咬穿了防爆玻璃后逃入了通风管道。
+
+我们还没找到他。"
+san_change = -2.0
+low_san_description = "日志突然多了一行，字体不同：'我找到你了。——7号。'通风管道里传来轻微的刮擦声。不远。"
+critical_san_description = "日志的末尾有一张照片。7号的编号牌上贴着你的照片。"

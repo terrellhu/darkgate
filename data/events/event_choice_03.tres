@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/event_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event_choice_03"
+event_type = 1
+description = "一个临时营地的残骸。篝火的灰烬还有余温，帐篷被撕裂，地上散落着罐头和弹药。
+
+角落里一台军用电台正在循环播放求救信号：'这里是B-7避难所……我们有47名幸存者……补给只够撑三天……请求支援……'信号来自东南方向约两公里处。
+
+你们自己的补给也不宽裕。"
+choices = [{"text": "前往B-7避难所 —— 消耗补给但可能找到盟友和线索", "result": "help"}, {"text": "收集营地残余物资后继续前进 —— 务实但放弃潜在援助", "result": "loot"}, {"text": "用电台回复，约定返程时汇合 —— 折中方案", "result": "reply"}]
+san_change = 0.0
+bio_electricity_change = 0
+low_san_description = "电台的声音变了。现在播放的是你自己的声音，在求救。你仔细听——那是未来的你，声音里满是绝望：'不要来这里……都是陷阱……他们不是人类了……'然后是一声尖叫，信号中断。"
+critical_san_description = "你已经去过B-7了。你一直都知道。那里的47个人都变成了同一个人——一个有47张嘴的东西。它一直在呼唤新的嘴巴加入合唱。"
