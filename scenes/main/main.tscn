@@ -1,6 +1,32 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
+[ext_resource type="Shader" path="res://scenes/main/gradient_overlay.gdshader" id="2_shader"]
+[ext_resource type="Script" path="res://scenes/main/bg_particles.gd" id="3_particles"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6"]
+font_size = 64
+font_color = Color(0.94, 0.92, 0.87, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.65, 0.05, 0.05, 0.7)
+shadow_offset = Vector2(3, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7"]
+font_size = 13
+font_color = Color(0.62, 0.10, 0.10, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8"]
+font_size = 14
+font_color = Color(0.45, 0.45, 0.52, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_9"]
+font_size = 11
+font_color = Color(0.25, 0.25, 0.30, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
 bg_color = Color(0.08, 0.08, 0.12, 1)
@@ -68,27 +94,6 @@ content_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_6"]
-font_size = 64
-font_color = Color(0.94, 0.92, 0.87, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 8
-shadow_color = Color(0.65, 0.05, 0.05, 0.7)
-shadow_offset = Vector2(3, 4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7"]
-font_size = 13
-font_color = Color(0.62, 0.10, 0.10, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_8"]
-font_size = 14
-font_color = Color(0.45, 0.45, 0.52, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_9"]
-font_size = 11
-font_color = Color(0.25, 0.25, 0.30, 1)
-
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -106,6 +111,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.04, 0.04, 0.07, 1)
+
+[node name="BgArt" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 7
+mouse_filter = 2
+
+[node name="CharArt" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -340.0
+offset_right = 240.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="GradientOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+material = SubResource("ShaderMaterial_1")
+color = Color(1, 1, 1, 1)
+
+[node name="Particles" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_particles")
 
 [node name="TopAccent" type="ColorRect" parent="."]
 layout_mode = 1
@@ -136,21 +193,51 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Tagline" type="Label" parent="MarginContainer/Content/TitleBox"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "异化防线"
 label_settings = SubResource("LabelSettings_7")
 
-[node name="Title" type="Label" parent="MarginContainer/Content/TitleBox"]
+[node name="TitleArea" type="Control" parent="MarginContainer/Content/TitleBox"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 140)
+
+[node name="TitleGlow" type="TextureRect" parent="MarginContainer/Content/TitleBox/TitleArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 7
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="MarginContainer/Content/TitleBox/TitleArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "九重黑门"
 label_settings = SubResource("LabelSettings_6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Divider" type="ColorRect" parent="MarginContainer/Content/TitleBox"]
+[node name="DividerDeco" type="TextureRect" parent="MarginContainer/Content/TitleBox"]
+unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(0, 1)
-color = Color(0.65, 0.07, 0.07, 0.7)
+custom_minimum_size = Vector2(500, 24)
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 
 [node name="Subtitle" type="Label" parent="MarginContainer/Content/TitleBox"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "ABERRATION LINE · THE 9 GATES"
 label_settings = SubResource("LabelSettings_8")
@@ -160,6 +247,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ButtonBox" type="VBoxContainer" parent="MarginContainer/Content"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -212,6 +300,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5")
 
 [node name="Footer" type="Label" parent="MarginContainer/Content"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "PROTOTYPE  ·  v0.1.0"
 horizontal_alignment = 1

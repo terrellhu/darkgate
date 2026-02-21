@@ -8,7 +8,11 @@
       "Bash(python:*)",
       "Bash(powershell -Command:*)",
       "Bash(find:*)",
-      "Bash(ls \"f:\\\\code\\\\godot\\\\darkgate\\\\data\\\\enemies\"\" 2>/dev/null || echo \"No enemies directory found \")"
+      "Bash(ls \"f:\\\\code\\\\godot\\\\darkgate\\\\data\\\\enemies\"\" 2>/dev/null || echo \"No enemies directory found \")",
+      "Bash(dir:*)",
+      "Bash(ls:*)",
+      "Bash(xxd:*)",
+      "Bash(for f in \"f:/code/godot/darkgate/assets/images/menu/\"*.png)"
     ]
   }
 }
