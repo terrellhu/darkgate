@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr6mxbdtw4kvk"
-path="res://.godot/imported/char_main.jpg-9ac4abd5d0ddfaffacf938836e623830.ctex"
+uid="uid://c1sq0p1ervfkl"
+path="res://.godot/imported/overlay_locked.png-4e34024a1ffd0fb9a6ad2e67adb7c202.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/menu/char_main.jpg"
-dest_files=["res://.godot/imported/char_main.jpg-9ac4abd5d0ddfaffacf938836e623830.ctex"]
+source_file="res://assets/images/hub/overlay_locked.png"
+dest_files=["res://.godot/imported/overlay_locked.png-4e34024a1ffd0fb9a6ad2e67adb7c202.ctex"]
 
 [params]
 

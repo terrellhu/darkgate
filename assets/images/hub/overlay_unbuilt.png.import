@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lgq11nde2tjb"
-path="res://.godot/imported/divider_ornament.jpg-e7e7b64288a523fe85239c6b844a066b.ctex"
+uid="uid://dhesglv0oom7w"
+path="res://.godot/imported/overlay_unbuilt.png-ca2a5bfb97307cab18080f16f76e1e96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/menu/divider_ornament.jpg"
-dest_files=["res://.godot/imported/divider_ornament.jpg-e7e7b64288a523fe85239c6b844a066b.ctex"]
+source_file="res://assets/images/hub/overlay_unbuilt.png"
+dest_files=["res://.godot/imported/overlay_unbuilt.png-ca2a5bfb97307cab18080f16f76e1e96.ctex"]
 
 [params]
 

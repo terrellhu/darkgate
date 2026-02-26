@@ -12,7 +12,8 @@
       "Bash(dir:*)",
       "Bash(ls:*)",
       "Bash(xxd:*)",
-      "Bash(for f in \"f:/code/godot/darkgate/assets/images/menu/\"*.png)"
+      "Bash(for f in \"f:/code/godot/darkgate/assets/images/menu/\"*.png)",
+      "Bash(file:*)"
     ]
   }
 }

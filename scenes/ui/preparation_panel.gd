@@ -9,7 +9,6 @@ var _selected_slot: String = EquipmentService.SLOT_WEAPON
 
 
 func _ready() -> void:
-	%BtnClose.pressed.connect(_on_close)
 	%BtnConfirm.pressed.connect(_on_confirm)
 	_refresh()
 
@@ -154,11 +153,6 @@ func _on_confirm() -> void:
 	PlayerData.reset_expedition_state()
 	EventBus.preparation_confirmed.emit(PlayerData.team.duplicate())
 	GameManager.change_state(GameManager.GameState.EXPEDITION)
-	queue_free()
-
-
-func _on_close() -> void:
-	queue_free()
 
 
 func _on_team_selected(char_id: String) -> void:

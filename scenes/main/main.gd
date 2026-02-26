@@ -67,14 +67,25 @@ func _load_textures() -> void:
 
 
 func _try_load_texture(target: TextureRect, path: String) -> void:
+	if not ResourceLoader.exists(path):
+		push_warning("Menu: 资源不存在 -> %s" % path)
+		return
 	var tex = load(path) as Texture2D
 	if tex:
 		target.texture = tex
+		print("Menu: 加载成功 %s (%dx%d)" % [path, tex.get_width(), tex.get_height()])
+	else:
+		push_warning("Menu: 加载失败 -> %s" % path)
 
 
 func _try_load_btn_textures() -> void:
 	var tex_normal := load(IMG_BTN_NORMAL) as Texture2D
 	if not tex_normal:
+		return
+	# 按钮图片必须是宽扁形状(宽>高*3)才适合做按钮底图，否则保留原有StyleBoxFlat
+	if tex_normal.get_width() <= tex_normal.get_height() * 3:
+		push_warning("Menu: btn_normal 尺寸不适合做按钮底图 (%dx%d)，使用默认样式" \
+			% [tex_normal.get_width(), tex_normal.get_height()])
 		return
 	var tex_pressed := load(IMG_BTN_PRESSED) as Texture2D
 
@@ -91,12 +102,10 @@ func _try_load_btn_textures() -> void:
 func _make_btn_stylebox(tex: Texture2D) -> StyleBoxTexture:
 	var sb := StyleBoxTexture.new()
 	sb.texture = tex
-	# 九宫格切片 — 保留四角，拉伸中间
 	sb.texture_margin_left = 24
 	sb.texture_margin_right = 24
 	sb.texture_margin_top = 24
 	sb.texture_margin_bottom = 24
-	# 内容边距
 	sb.content_margin_left = 24.0
 	sb.content_margin_top = 15.0
 	sb.content_margin_right = 24.0

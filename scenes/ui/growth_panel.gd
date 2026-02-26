@@ -10,7 +10,6 @@ var _current_char_id: String = ""
 
 
 func _ready() -> void:
-	%BtnClose.pressed.connect(queue_free)
 	%BtnPrevChar.pressed.connect(_on_switch_char.bind(-1))
 	%BtnNextChar.pressed.connect(_on_switch_char.bind(1))
 	%BtnStarUpgrade.pressed.connect(_on_star_upgrade)

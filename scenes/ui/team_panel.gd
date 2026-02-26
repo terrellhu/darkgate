@@ -6,7 +6,6 @@ const CharacterCardScene := preload("res://scenes/ui/character_card.tscn")
 
 
 func _ready() -> void:
-	%BtnClose.pressed.connect(_on_close)
 	_refresh()
 
 
@@ -79,5 +78,3 @@ func _on_roster_card_pressed(char_id: String) -> void:
 		_refresh()
 
 
-func _on_close() -> void:
-	queue_free()

@@ -1,6 +1,42 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scenes/hub/hub.gd" id="1_hub"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 28
+font_color = Color(0.94, 0.92, 0.87, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.8)
+shadow_size = 4
+shadow_color = Color(0.65, 0.05, 0.05, 0.5)
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_resource"]
+font_size = 14
+font_color = Color(0.85, 0.85, 0.9, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_facility"]
+font_size = 16
+font_color = Color(0.92, 0.88, 0.83, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
+bg_color = Color(0.06, 0.04, 0.08, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.08, 0.08, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.04, 0.03, 0.06, 0.85)
+border_width_bottom = 1
+border_color = Color(0.65, 0.08, 0.08, 0.4)
 
 [node name="Hub" type="Control"]
 layout_mode = 3
@@ -20,98 +56,425 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.06, 0.04, 0.08, 1)
 
+[node name="BgArt" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="Vignette" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
 [node name="TopBar" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 40.0
+offset_bottom = 44.0
 grow_horizontal = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
 
-[node name="LblBioElectricity" type="Label" parent="TopBar"]
+[node name="TopBarBg" type="PanelContainer" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="HBox" type="HBoxContainer" parent="TopBar/TopBarBg"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BioElectricity" type="HBoxContainer" parent="TopBar/TopBarBg/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="TopBar/TopBarBg/HBox/BioElectricity"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+expand_mode = 3
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LblBioElectricity" type="Label" parent="TopBar/TopBarBg/HBox/BioElectricity"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "生物电: 0"
+label_settings = SubResource("LabelSettings_resource")
 
-[node name="LblNanoAlloy" type="Label" parent="TopBar"]
+[node name="NanoAlloy" type="HBoxContainer" parent="TopBar/TopBarBg/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="TopBar/TopBarBg/HBox/NanoAlloy"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+expand_mode = 3
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LblNanoAlloy" type="Label" parent="TopBar/TopBarBg/HBox/NanoAlloy"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "合金: 0"
+label_settings = SubResource("LabelSettings_resource")
 
-[node name="LblHashrate" type="Label" parent="TopBar"]
+[node name="Hashrate" type="HBoxContainer" parent="TopBar/TopBarBg/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="TopBar/TopBarBg/HBox/Hashrate"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+expand_mode = 3
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LblHashrate" type="Label" parent="TopBar/TopBarBg/HBox/Hashrate"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "算力: 0"
+label_settings = SubResource("LabelSettings_resource")
 
-[node name="LblMentalPower" type="Label" parent="TopBar"]
+[node name="MentalPower" type="HBoxContainer" parent="TopBar/TopBarBg/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="TopBar/TopBarBg/HBox/MentalPower"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+expand_mode = 3
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LblMentalPower" type="Label" parent="TopBar/TopBarBg/HBox/MentalPower"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "精神力: 0"
+label_settings = SubResource("LabelSettings_resource")
 
-[node name="FacilityList" type="VBoxContainer" parent="."]
+[node name="PageContainer" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.06
-anchor_right = 0.95
-anchor_bottom = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 44.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HubPage" type="Control" parent="PageContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FacilityList" type="VBoxContainer" parent="PageContainer/HubPage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.02
+anchor_right = 0.97
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="LblTitle" type="Label" parent="FacilityList"]
+[node name="LblTitle" type="Label" parent="PageContainer/HubPage/FacilityList"]
 layout_mode = 2
 text = "— 地下枢纽 —"
+label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
 
-[node name="ReactorSlot" type="PanelContainer" parent="FacilityList"]
+[node name="DividerDeco" type="TextureRect" parent="PageContainer/HubPage/FacilityList"]
+unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 16)
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 
-[node name="Label" type="Label" parent="FacilityList/ReactorSlot"]
+[node name="ReactorSlot" type="PanelContainer" parent="PageContainer/HubPage/FacilityList"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="CardBg" type="TextureRect" parent="PageContainer/HubPage/FacilityList/ReactorSlot"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="Overlay" type="TextureRect" parent="PageContainer/HubPage/FacilityList/ReactorSlot"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PageContainer/HubPage/FacilityList/ReactorSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PageContainer/HubPage/FacilityList/ReactorSlot/MarginContainer"]
 layout_mode = 2
 text = "维生反应堆  Lv.1"
+label_settings = SubResource("LabelSettings_facility")
+vertical_alignment = 1
 
-[node name="RecruitSlot" type="PanelContainer" parent="FacilityList"]
+[node name="RecruitSlot" type="PanelContainer" parent="PageContainer/HubPage/FacilityList"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 
-[node name="Label" type="Label" parent="FacilityList/RecruitSlot"]
+[node name="CardBg" type="TextureRect" parent="PageContainer/HubPage/FacilityList/RecruitSlot"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="Overlay" type="TextureRect" parent="PageContainer/HubPage/FacilityList/RecruitSlot"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PageContainer/HubPage/FacilityList/RecruitSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PageContainer/HubPage/FacilityList/RecruitSlot/MarginContainer"]
 layout_mode = 2
 text = "神经接入舱  Lv.1"
+label_settings = SubResource("LabelSettings_facility")
+vertical_alignment = 1
 
-[node name="ClinicSlot" type="PanelContainer" parent="FacilityList"]
+[node name="ClinicSlot" type="PanelContainer" parent="PageContainer/HubPage/FacilityList"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 
-[node name="Label" type="Label" parent="FacilityList/ClinicSlot"]
+[node name="CardBg" type="TextureRect" parent="PageContainer/HubPage/FacilityList/ClinicSlot"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="Overlay" type="TextureRect" parent="PageContainer/HubPage/FacilityList/ClinicSlot"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PageContainer/HubPage/FacilityList/ClinicSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PageContainer/HubPage/FacilityList/ClinicSlot/MarginContainer"]
 layout_mode = 2
 text = "义体诊所  Lv.1"
+label_settings = SubResource("LabelSettings_facility")
+vertical_alignment = 1
 
-[node name="MarketSlot" type="PanelContainer" parent="FacilityList"]
+[node name="MarketSlot" type="PanelContainer" parent="PageContainer/HubPage/FacilityList"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 
-[node name="Label" type="Label" parent="FacilityList/MarketSlot"]
+[node name="CardBg" type="TextureRect" parent="PageContainer/HubPage/FacilityList/MarketSlot"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="Overlay" type="TextureRect" parent="PageContainer/HubPage/FacilityList/MarketSlot"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PageContainer/HubPage/FacilityList/MarketSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PageContainer/HubPage/FacilityList/MarketSlot/MarginContainer"]
 layout_mode = 2
 text = "黑市终端  [未解锁]"
+label_settings = SubResource("LabelSettings_facility")
+vertical_alignment = 1
 
-[node name="ForgeSlot" type="PanelContainer" parent="FacilityList"]
+[node name="ForgeSlot" type="PanelContainer" parent="PageContainer/HubPage/FacilityList"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 
-[node name="Label" type="Label" parent="FacilityList/ForgeSlot"]
+[node name="CardBg" type="TextureRect" parent="PageContainer/HubPage/FacilityList/ForgeSlot"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="Overlay" type="TextureRect" parent="PageContainer/HubPage/FacilityList/ForgeSlot"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PageContainer/HubPage/FacilityList/ForgeSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PageContainer/HubPage/FacilityList/ForgeSlot/MarginContainer"]
 layout_mode = 2
 text = "纳米锻造间  [未解锁]"
+label_settings = SubResource("LabelSettings_facility")
+vertical_alignment = 1
 
-[node name="DataLabSlot" type="PanelContainer" parent="FacilityList"]
+[node name="DataLabSlot" type="PanelContainer" parent="PageContainer/HubPage/FacilityList"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 
-[node name="Label" type="Label" parent="FacilityList/DataLabSlot"]
+[node name="CardBg" type="TextureRect" parent="PageContainer/HubPage/FacilityList/DataLabSlot"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="Overlay" type="TextureRect" parent="PageContainer/HubPage/FacilityList/DataLabSlot"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PageContainer/HubPage/FacilityList/DataLabSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PageContainer/HubPage/FacilityList/DataLabSlot/MarginContainer"]
 layout_mode = 2
 text = "数据解析室  [未解锁]"
+label_settings = SubResource("LabelSettings_facility")
+vertical_alignment = 1
+
+[node name="TeamPage" type="Control" parent="PageContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GrowthPage" type="Control" parent="PageContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExpeditionPage" type="Control" parent="PageContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsPage" type="Control" parent="PageContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsPlaceholder" type="Label" parent="PageContainer/SettingsPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "设置功能开发中..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BottomNav" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -125,6 +488,7 @@ grow_vertical = 0
 theme_override_constants/separation = 5
 
 [node name="BtnHub" type="Button" parent="BottomNav"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "枢纽"
@@ -148,6 +512,7 @@ size_flags_horizontal = 3
 text = "探索"
 
 [node name="BtnSettings" type="Button" parent="BottomNav"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "设置"
