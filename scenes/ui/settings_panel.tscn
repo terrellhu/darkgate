@@ -1,0 +1,237 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/settings_panel.gd" id="1_settings"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 22
+font_color = Color(0.94, 0.92, 0.87, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_section"]
+font_size = 16
+font_color = Color(0.92, 0.88, 0.83, 0.7)
+
+[node name="SettingsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.03, 0.06, 0.95)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+text = "— 设 置 —"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="SepTitle" type="HSeparator" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="LblAudio" type="Label" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+text = "音量设置"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="MasterRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/MasterRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "主音量"
+
+[node name="SliderMaster" type="HSlider" parent="MarginContainer/ScrollContainer/VBox/MasterRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="LblMasterVal" type="Label" parent="MarginContainer/ScrollContainer/VBox/MasterRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48, 0)
+text = "100%"
+horizontal_alignment = 2
+
+[node name="BgmRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/BgmRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "音乐"
+
+[node name="SliderBgm" type="HSlider" parent="MarginContainer/ScrollContainer/VBox/BgmRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="LblBgmVal" type="Label" parent="MarginContainer/ScrollContainer/VBox/BgmRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48, 0)
+text = "80%"
+horizontal_alignment = 2
+
+[node name="SfxRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/SfxRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "音效"
+
+[node name="SliderSfx" type="HSlider" parent="MarginContainer/ScrollContainer/VBox/SfxRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="LblSfxVal" type="Label" parent="MarginContainer/ScrollContainer/VBox/SfxRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48, 0)
+text = "80%"
+horizontal_alignment = 2
+
+[node name="SepAudio" type="HSeparator" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="LblGameplay" type="Label" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+text = "游戏选项"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="ShakeRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/ShakeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "屏幕震动"
+
+[node name="ChkShake" type="CheckButton" parent="MarginContainer/ScrollContainer/VBox/ShakeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="DmgNumRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/DmgNumRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "伤害数字"
+
+[node name="ChkDmgNum" type="CheckButton" parent="MarginContainer/ScrollContainer/VBox/DmgNumRow"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="AutoSaveRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/AutoSaveRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "自动存档"
+
+[node name="ChkAutoSave" type="CheckButton" parent="MarginContainer/ScrollContainer/VBox/AutoSaveRow"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="TextSpeedRow" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBox/TextSpeedRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "文字速度"
+
+[node name="OptTextSpeed" type="OptionButton" parent="MarginContainer/ScrollContainer/VBox/TextSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SepGameplay" type="HSeparator" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="LblData" type="Label" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+text = "数据管理"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="BtnSave" type="Button" parent="MarginContainer/ScrollContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+text = "手动存档"
+
+[node name="BtnDeleteSave" type="Button" parent="MarginContainer/ScrollContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+text = "删除存档"
+
+[node name="SepData" type="HSeparator" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="BtnBackToMenu" type="Button" parent="MarginContainer/ScrollContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "返回主菜单"
+
+[node name="BtnClose" type="Button" parent="MarginContainer/ScrollContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+text = "关闭"

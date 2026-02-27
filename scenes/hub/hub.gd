@@ -2,10 +2,13 @@
 extends Control
 
 const TeamPanelScene := preload("res://scenes/ui/team_panel.tscn")
+const CharacterDetailScene := preload("res://scenes/ui/character_detail_panel.tscn")
 const PreparationPanelScene := preload("res://scenes/ui/preparation_panel.tscn")
 const FacilityPanelScene := preload("res://scenes/ui/facility_panel.tscn")
 const GrowthPanelScene := preload("res://scenes/ui/growth_panel.tscn")
+const SettingsPanelScene := preload("res://scenes/ui/settings_panel.tscn")
 const ToastNotification := preload("res://scenes/ui/toast_notification.gd")
+const ProductionToast := preload("res://scenes/ui/production_toast.gd")
 
 ## 图片资源路径
 const IMG_BG := "res://assets/images/hub/bg_hub.png"
@@ -108,7 +111,6 @@ func _setup_tabs() -> void:
 
 	# Hub 页面默认已初始化
 	_tab_initialized[TAB_HUB] = true
-	_tab_initialized[TAB_SETTINGS] = true  # 占位页无需初始化
 
 	# 初始化按钮高亮
 	_update_tab_buttons()
@@ -140,6 +142,7 @@ func _init_tab_content(tab_name: String) -> void:
 			var panel := TeamPanelScene.instantiate()
 			page.add_child(panel)
 			panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+			panel.character_detail_requested.connect(_open_character_detail)
 		TAB_GROWTH:
 			var panel := GrowthPanelScene.instantiate()
 			page.add_child(panel)
@@ -158,6 +161,12 @@ func _init_tab_content(tab_name: String) -> void:
 				page.add_child(panel)
 				panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 				panel.set_offsets_preset(Control.PRESET_FULL_RECT)
+		TAB_SETTINGS:
+			var panel := SettingsPanelScene.instantiate()
+			panel.set_embedded_mode()
+			page.add_child(panel)
+			panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+			panel.set_offsets_preset(Control.PRESET_FULL_RECT)
 
 
 ## 切换到探索页时，如果队伍状态变了需要重新初始化
@@ -238,12 +247,11 @@ func _collect_facility_production() -> void:
 	var production := FacilityService.collect_all_production()
 	if production.is_empty():
 		return
-	var summary := "设施产出："
 	for resource_type: String in production:
 		var amount: int = int(production[resource_type])
 		PlayerData.modify_resource(resource_type, amount)
-		summary += "\n  %s +%d" % [_resource_display_name(resource_type), amount]
-	_show_message(summary)
+	# 用非阻塞浮层展示产出汇总，3秒后自动消失
+	ProductionToast.show_production(self, production)
 
 
 ## ========== UI 更新 ==========
@@ -347,6 +355,26 @@ func _open_facility_panel(facility_id: String) -> void:
 	var panel := FacilityPanelScene.instantiate()
 	%PopupLayer.add_child(panel)
 	panel.setup(facility_id)
+
+
+## ========== 角色详情 ==========
+
+func _open_character_detail(char_id: String) -> void:
+	var detail := CharacterDetailScene.instantiate()
+	%PopupLayer.add_child(detail)
+	detail.set_anchors_preset(Control.PRESET_FULL_RECT)
+	detail.set_offsets_preset(Control.PRESET_FULL_RECT)
+	detail.setup(char_id)
+	detail.back_pressed.connect(_on_character_detail_closed.bind(detail))
+
+
+func _on_character_detail_closed(detail: Control) -> void:
+	detail.queue_free()
+	# 刷新队伍面板
+	var page: Control = _tab_pages[TAB_TEAM]
+	for child in page.get_children():
+		if child.has_method("refresh"):
+			child.refresh()
 
 
 ## ========== 工具方法 ==========

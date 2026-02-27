@@ -1,10 +1,12 @@
 ## 角色卡片 UI 组件
-## 显示单个角色的基本信息
+## 显示单个角色的基本信息（含头像）
 extends PanelContainer
 
 signal card_pressed(char_id: String)
 
 var _char_id: String = ""
+
+const AVATAR_PATH_TEMPLATE := "res://assets/images/characters/%s_avatar.png"
 
 const RARITY_COLORS := {
 	0: Color(0.6, 0.6, 0.6),    # N - 灰色
@@ -50,9 +52,20 @@ func setup(char_id: String, char_data: CharacterData, runtime: Dictionary) -> vo
 	var rarity_color: Color = RARITY_COLORS.get(char_data.rarity, Color.WHITE)
 	%LblName.add_theme_color_override("font_color", rarity_color)
 
+	# 加载头像
+	_load_avatar(char_id)
+
 
 func get_char_id() -> String:
 	return _char_id
+
+
+func _load_avatar(char_id: String) -> void:
+	var avatar_path := AVATAR_PATH_TEMPLATE % char_id
+	if ResourceLoader.exists(avatar_path):
+		var tex := load(avatar_path) as Texture2D
+		if tex:
+			%Avatar.texture = tex
 
 
 func _on_gui_input(event: InputEvent) -> void:

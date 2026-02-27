@@ -1,58 +1,94 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/character_card.gd" id="1_card"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.06, 0.04, 0.08, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.08, 0.08, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
 [node name="CharacterCard" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 88)
 mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 script = ExtResource("1_card")
 
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LeftInfo" type="VBoxContainer" parent="HBox"]
+[node name="AvatarContainer" type="Control" parent="HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 80)
+
+[node name="AvatarBg" type="ColorRect" parent="HBox/AvatarContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.06, 0.1, 1)
+
+[node name="Avatar" type="TextureRect" parent="HBox/AvatarContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="Info" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
 
-[node name="TopRow" type="HBoxContainer" parent="HBox/LeftInfo"]
+[node name="TopRow" type="HBoxContainer" parent="HBox/Info"]
 layout_mode = 2
+theme_override_constants/separation = 6
 
-[node name="LblName" type="Label" parent="HBox/LeftInfo/TopRow"]
+[node name="LblName" type="Label" parent="HBox/Info/TopRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "角色名"
 
-[node name="LblRarity" type="Label" parent="HBox/LeftInfo/TopRow"]
+[node name="LblRarity" type="Label" parent="HBox/Info/TopRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "★"
 
-[node name="LblLevel" type="Label" parent="HBox/LeftInfo/TopRow"]
+[node name="LblLevel" type="Label" parent="HBox/Info/TopRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Lv.1"
 
-[node name="BottomRow" type="HBoxContainer" parent="HBox/LeftInfo"]
+[node name="MiddleRow" type="HBoxContainer" parent="HBox/Info"]
 layout_mode = 2
 
-[node name="LblType" type="Label" parent="HBox/LeftInfo/BottomRow"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "女武神"
-
-[node name="Sep" type="Label" parent="HBox/LeftInfo/BottomRow"]
-layout_mode = 2
-text = "·"
-
-[node name="LblProfession" type="Label" parent="HBox/LeftInfo/BottomRow"]
+[node name="LblProfession" type="Label" parent="HBox/Info/MiddleRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "突击手"
 
-[node name="LblStats" type="Label" parent="HBox"]
+[node name="LblStats" type="Label" parent="HBox/Info"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "HP:100 ATK:10 DEF:5"
+text = "HP:100  ATK:10  DEF:5"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

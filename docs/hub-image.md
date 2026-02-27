@@ -77,7 +77,19 @@
 
 ---
 
-## 6. 装饰元素
+## 6. 产出结算浮层素材（3 个）
+
+用于设施产出汇总通知浮层（非阻塞，3 秒自动消失），覆盖在 Hub 页面上方。
+
+| 文件名 | 尺寸 | 用途 | 提示词 |
+|--------|------|------|--------|
+| `toast_production_bg.png` | 512 × 128 | 产出浮层背景纹理（9-patch 拉伸） | `Dark cyberpunk UI notification panel texture, semi-transparent deep purple-black gradient, subtle circuit board trace patterns with faint red glow along edges, horizontal banner shape, futuristic HUD overlay style, clean minimal surface, grainy texture, suitable for 9-slice scaling, no text, no watermark` |
+| `toast_production_divider.png` | 400 × 8 | 浮层标题与内容之间的分割线 | `Futuristic horizontal divider line, thin glowing red-orange center fading to transparent on both ends, tiny data node dots scattered along the line, cyberpunk sci-fi UI separator element, dark transparent background, no text` |
+| `toast_production_frame.png` | 512 × 128 | 浮层外框光效装饰（叠加在背景上） | `Cyberpunk notification border frame, thin neon red edge glow lines with energy pulse accents at corners, subtle electric arc effect along top edge, dark transparent interior, holographic tech style, suitable for 9-slice scaling, no text, no watermark` |
+
+---
+
+## 7. 装饰元素
 
 | 文件名 | 尺寸 | 用途 | 提示词 |
 |--------|------|------|--------|
@@ -109,9 +121,12 @@ assets/images/hub/
 ├── nav_growth.png              # 48×48      导航-成长
 ├── nav_expedition.png          # 48×48      导航-探索
 ├── nav_settings.png            # 48×48      导航-设置
+├── toast_production_bg.png     # 512×128    产出浮层背景(9-patch)
+├── toast_production_divider.png # 400×8     产出浮层分割线
+├── toast_production_frame.png  # 512×128    产出浮层外框光效(9-patch)
 ├── divider_hub.png             # 600×16     分隔装饰线
 ├── card_frame.png              # 480×120    卡片边框(9-patch)
 └── vignette_overlay.png        # 1080×1920  暗角叠加层
 ```
 
-共计 **21** 张图片。
+共计 **24** 张图片。

@@ -3,6 +3,7 @@ extends Control
 
 const TITLE_TEXT := "九重黑门"
 const GLITCH_CHARS := "異化防線九重黑門▓▒░█▌▐◆◇●○■□△▽◣◤"
+const SettingsPanelScene := preload("res://scenes/ui/settings_panel.tscn")
 
 ## 图片资源路径
 const IMG_BG := "res://assets/images/menu/bg_main.png"
@@ -236,5 +237,11 @@ func _on_continue() -> void:
 
 
 func _on_settings() -> void:
-	# TODO: 打开设置面板
-	pass
+	var panel := SettingsPanelScene.instantiate()
+	panel.set_main_menu_mode()
+	add_child(panel)
+	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	panel.set_offsets_preset(Control.PRESET_FULL_RECT)
+	panel.close_requested.connect(func() -> void:
+		panel.queue_free()
+	)
