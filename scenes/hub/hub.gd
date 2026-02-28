@@ -2,7 +2,6 @@
 extends Control
 
 const TeamPanelScene := preload("res://scenes/ui/team_panel.tscn")
-const CharacterDetailScene := preload("res://scenes/ui/character_detail_panel.tscn")
 const PreparationPanelScene := preload("res://scenes/ui/preparation_panel.tscn")
 const FacilityPanelScene := preload("res://scenes/ui/facility_panel.tscn")
 const GrowthPanelScene := preload("res://scenes/ui/growth_panel.tscn")
@@ -357,24 +356,23 @@ func _open_facility_panel(facility_id: String) -> void:
 	panel.setup(facility_id)
 
 
-## ========== 角色详情 ==========
+## ========== 角色详情（跳转到成长页） ==========
 
 func _open_character_detail(char_id: String) -> void:
-	var detail := CharacterDetailScene.instantiate()
-	%PopupLayer.add_child(detail)
-	detail.set_anchors_preset(Control.PRESET_FULL_RECT)
-	detail.set_offsets_preset(Control.PRESET_FULL_RECT)
-	detail.setup(char_id)
-	detail.back_pressed.connect(_on_character_detail_closed.bind(detail))
+	# 确保成长页已初始化
+	if not _tab_initialized.get(TAB_GROWTH, false):
+		_init_tab_content(TAB_GROWTH)
+		_tab_initialized[TAB_GROWTH] = true
 
-
-func _on_character_detail_closed(detail: Control) -> void:
-	detail.queue_free()
-	# 刷新队伍面板
-	var page: Control = _tab_pages[TAB_TEAM]
+	# 在成长面板中选中该角色
+	var page: Control = _tab_pages[TAB_GROWTH]
 	for child in page.get_children():
-		if child.has_method("refresh"):
-			child.refresh()
+		if child.has_method("select_character"):
+			child.select_character(char_id)
+			break
+
+	# 切换到成长页
+	_switch_tab(TAB_GROWTH)
 
 
 ## ========== 工具方法 ==========
