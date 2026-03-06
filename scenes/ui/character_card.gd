@@ -15,6 +15,13 @@ const RARITY_COLORS := {
 	3: Color(0.8, 0.5, 0.1),    # SSR - 橙色
 }
 
+const RARITY_BORDER_WIDTH := {
+	0: 1.0,   # N
+	1: 2.0,   # R
+	2: 2.5,   # SR
+	3: 3.0,   # SSR
+}
+
 const PROFESSION_NAMES := {
 	0: "突击手", 1: "盾卫", 2: "处刑人",
 	3: "瘟疫使者", 4: "脑波术士", 5: "狂暴体",
@@ -54,6 +61,10 @@ func setup(char_id: String, char_data: CharacterData, runtime: Dictionary) -> vo
 
 	# 加载头像
 	_load_avatar(char_id)
+
+	# 稀有度彩色边框
+	%RarityBorder.border_color = Color(rarity_color, 0.85)
+	%RarityBorder.border_width = RARITY_BORDER_WIDTH.get(char_data.rarity, 1.0)
 
 
 func get_char_id() -> String:

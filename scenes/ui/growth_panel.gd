@@ -125,8 +125,29 @@ func _switch_tab(tab: int) -> void:
 func _update_tab_buttons() -> void:
 	var buttons := [%BtnTabStats, %BtnTabEquip, %BtnTabSkills, %BtnTabTree]
 	for i in buttons.size():
-		buttons[i].disabled = (i == _current_tab)
-		buttons[i].modulate = Color(1.0, 0.8, 0.8, 1.0) if i == _current_tab else Color.WHITE
+		var is_active := (i == _current_tab)
+		buttons[i].disabled = is_active
+		if is_active:
+			var sb := StyleBoxFlat.new()
+			sb.bg_color = Color(0.18, 0.04, 0.04, 0.9)
+			sb.border_color = Color(0.95, 0.2, 0.2, 0.8)
+			sb.set_border_width_all(0)
+			sb.border_width_top = 2
+			sb.set_corner_radius_all(2)
+			sb.set_content_margin_all(6)
+			buttons[i].add_theme_stylebox_override("disabled", sb)
+			buttons[i].modulate = Color.WHITE
+		else:
+			var sb := StyleBoxFlat.new()
+			sb.bg_color = Color(0.08, 0.06, 0.1, 0.7)
+			sb.border_color = Color(0.65, 0.08, 0.08, 0.3)
+			sb.set_border_width_all(0)
+			sb.border_width_top = 1
+			sb.set_corner_radius_all(2)
+			sb.set_content_margin_all(6)
+			buttons[i].add_theme_stylebox_override("normal", sb)
+			buttons[i].add_theme_stylebox_override("hover", sb)
+			buttons[i].modulate = Color(0.7, 0.7, 0.7, 1.0)
 
 
 ## ========== 刷新 ==========
@@ -557,3 +578,5 @@ func _is_equippable(item: ItemData) -> bool:
 
 func _get_item_slot(item: ItemData) -> String:
 	return EQUIP_SLOT_MAP.get(item.equip_slot, "")
+
+

@@ -1,7 +1,8 @@
-# 队伍页面 & 角色详情页 UI 图片资源规格与 AI 生成提示词
+# 队伍页面 & 角色成长页 UI 图片资源规格与 AI 生成提示词
 
-> 目标：为队伍编成页面和角色详情页生成 UI 图片素材，放入对应目录后即可运行。
+> 目标：为队伍编成页面和角色成长页生成 UI 图片素材，放入对应目录后即可运行。
 > 角色头像 `*_avatar.png` 和全身立绘 `*_full.png` 已在 `docs/character/` 中单独描述并已生成。
+> 注意：角色详情页已合并到成长页（growth_panel），点击队伍中角色会跳转到成长Tab。
 
 ---
 
@@ -110,14 +111,14 @@ text, characters, bright colors, solid fill, 3D, glossy, complex decorations
 
 ---
 
-## ④ detail_bg.png — 角色详情页背景
+## ④ detail_bg.png — 角色成长页背景
 
 | 属性       | 值                                                |
 | ---------- | ------------------------------------------------- |
 | **文件名** | `assets/images/team/detail_bg.png`                |
 | **尺寸**   | 720 × 1280 px                                    |
 | **格式**   | PNG 或 JPG                                        |
-| **用途**   | 角色详情页全屏背景，立绘叠放在上方                |
+| **用途**   | 角色成长页全屏背景(growth_panel)，立绘叠放在上方  |
 | **构图**   | 上半部留出人物立绘空间（纯暗色渐变），下半部有信息面板的暗色区域 |
 
 ### AI 提示词（English）
@@ -147,7 +148,7 @@ people, characters, text, watermark, bright colors, daylight, happy mood, cartoo
 | **文件名** | `assets/images/team/detail_info_panel.png`        |
 | **尺寸**   | 680 × 500 px                                     |
 | **格式**   | PNG（透明背景）                                   |
-| **用途**   | 角色详情页下半部信息区域的半透明底板              |
+| **用途**   | 角色成长页下半部信息区域的半透明底板（备用，当前用StyleBoxFlat）|
 | **构图**   | 圆角矩形(4px)，半透明深色底+红色细边框           |
 
 ### AI 提示词（English）
@@ -170,14 +171,14 @@ text, icons, 3D, glossy, bright colors, gradient fills, complex patterns, shadow
 
 ---
 
-## ⑥ tab_bg_active.png — 详情页标签激活态
+## ⑥ tab_bg_active.png — 成长页标签激活态
 
 | 属性       | 值                                                |
 | ---------- | ------------------------------------------------- |
 | **文件名** | `assets/images/team/tab_bg_active.png`            |
 | **尺寸**   | 200 × 48 px                                      |
 | **格式**   | PNG（透明背景）                                   |
-| **用途**   | 角色详情页下方Tab（属性/装备/技能）激活状态底图   |
+| **用途**   | 角色成长页下方Tab（属性/装备/技能/天赋）激活状态底图 |
 
 ### AI 提示词（English）
 
@@ -193,14 +194,14 @@ Dark futuristic UI tab button ACTIVE state, rectangular shape 200x48 pixels with
 
 ---
 
-## ⑦ tab_bg_inactive.png — 详情页标签未激活态
+## ⑦ tab_bg_inactive.png — 成长页标签未激活态
 
 | 属性       | 值                                                |
 | ---------- | ------------------------------------------------- |
 | **文件名** | `assets/images/team/tab_bg_inactive.png`          |
 | **尺寸**   | 200 × 48 px                                      |
 | **格式**   | PNG（透明背景）                                   |
-| **用途**   | 角色详情页下方Tab未选中状态底图                   |
+| **用途**   | 角色成长页下方Tab未选中状态底图                   |
 
 ### AI 提示词（English）
 
@@ -216,14 +217,14 @@ Dark futuristic UI tab button INACTIVE state, rectangular shape 200x48 pixels wi
 
 ---
 
-## ⑧ btn_back.png — 返回按钮
+## ⑧ btn_back.png — 返回按钮（备用）
 
 | 属性       | 值                                                |
 | ---------- | ------------------------------------------------- |
 | **文件名** | `assets/images/team/btn_back.png`                 |
 | **尺寸**   | 48 × 48 px                                       |
 | **格式**   | PNG（透明背景）                                   |
-| **用途**   | 角色详情页左上角返回按钮                          |
+| **用途**   | 备用导航按钮（详情页已合并到成长Tab，暂未使用）   |
 
 ### AI 提示词（English）
 
@@ -325,18 +326,18 @@ text, icons, portrait, face, character, solid center, opaque center, bright back
 3. **①④ 背景图** 需确保足够暗（下半部分），方便叠加UI元素
 4. 所有图片生成后放入 `assets/images/team/` 目录
 
-### 资源清单
+### 资源清单与使用状态
 
-| # | 文件名 | 尺寸 | 透明 | 数量 |
-|---|--------|------|------|------|
-| ① | team_bg.png | 720×1280 | 否 | 1 |
-| ② | card_slot_bg.png | 640×100 | 是 | 1 |
-| ③ | card_slot_empty.png | 640×100 | 是 | 1 |
-| ④ | detail_bg.png | 720×1280 | 否 | 1 |
-| ⑤ | detail_info_panel.png | 680×500 | 是 | 1 |
-| ⑥ | tab_bg_active.png | 200×48 | 是 | 1 |
-| ⑦ | tab_bg_inactive.png | 200×48 | 是 | 1 |
-| ⑧ | btn_back.png | 48×48 | 是 | 1 |
-| ⑨ | equip_slot_bg.png | 80×80 | 是 | 1 |
-| ⑩ | rarity_frame_r/sr/ssr.png | 100×100 | 是 | 3 |
-| — | **合计** | — | — | **12** |
+| # | 文件名 | 尺寸 | 透明 | 使用状态 |
+|---|--------|------|------|----------|
+| ① | team_bg.png | 720×1280 | 否 | ✅ team_panel 背景 |
+| ② | card_slot_bg.png | 640×100 | 是 | 备用（当前用 StyleBoxFlat） |
+| ③ | card_slot_empty.png | 640×100 | 是 | ✅ team_panel 空槽位 |
+| ④ | detail_bg.png | 720×1280 | 否 | ✅ growth_panel 背景 |
+| ⑤ | detail_info_panel.png | 680×500 | 是 | 备用（当前用 StyleBoxFlat） |
+| ⑥ | tab_bg_active.png | 200×48 | 是 | ⚠️ 尺寸/透明度不适配，改用代码StyleBoxFlat |
+| ⑦ | tab_bg_inactive.png | 200×48 | 是 | ⚠️ 同上，改用代码StyleBoxFlat |
+| ⑧ | btn_back.png | 48×48 | 是 | 备用（详情已合并到成长Tab） |
+| ⑨ | equip_slot_bg.png | 80×80 | 是 | 备用（装备槽用文本列表） |
+| ⑩ | rarity_frame_r/sr/ssr.png | 100×100 | 是 | ⚠️ 中心非全透明，改用代码绘制RarityBorder |
+| — | **合计** | — | — | **12张（3张已接入，4张备用，5张改用代码）** |

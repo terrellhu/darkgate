@@ -5,10 +5,20 @@ extends Control
 signal character_detail_requested(char_id: String)
 
 const CharacterCardScene := preload("res://scenes/ui/character_card.tscn")
+const TEAM_BG_PATH := "res://assets/images/team/team_bg.png"
+const EMPTY_SLOT_IMG_PATH := "res://assets/images/team/card_slot_empty.png"
 
 
 func _ready() -> void:
+	_load_background()
 	_refresh()
+
+
+func _load_background() -> void:
+	if ResourceLoader.exists(TEAM_BG_PATH):
+		var tex := load(TEAM_BG_PATH) as Texture2D
+		if tex:
+			%Background.texture = tex
 
 
 ## 外部调用：从详情页返回时刷新
@@ -84,23 +94,37 @@ func _on_roster_card_pressed(char_id: String) -> void:
 
 
 ## 创建空卡槽占位
-func _create_empty_slot() -> PanelContainer:
-	var panel := PanelContainer.new()
-	panel.custom_minimum_size = Vector2(0, 88)
+func _create_empty_slot() -> Control:
+	var container := Control.new()
+	container.custom_minimum_size = Vector2(0, 88)
 
+	# 优先使用图片素材
+	if ResourceLoader.exists(EMPTY_SLOT_IMG_PATH):
+		var tex := load(EMPTY_SLOT_IMG_PATH) as Texture2D
+		if tex:
+			var img := TextureRect.new()
+			img.texture = tex
+			img.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			img.set_anchors_preset(Control.PRESET_FULL_RECT)
+			img.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			container.add_child(img)
+			return container
+
+	# 回退：代码构建
+	var panel := PanelContainer.new()
+	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.06, 0.04, 0.08, 0.3)
 	style.border_color = Color(0.65, 0.08, 0.08, 0.25)
 	style.set_border_width_all(1)
 	style.set_corner_radius_all(4)
-	# 虚线效果用透明度模拟
 	panel.add_theme_stylebox_override("panel", style)
-
 	var lbl := Label.new()
 	lbl.text = "＋ 空位"
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	lbl.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5, 0.5))
 	panel.add_child(lbl)
-
-	return panel
+	container.add_child(panel)
+	return container

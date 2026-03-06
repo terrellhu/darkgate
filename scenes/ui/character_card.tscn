@@ -53,6 +53,19 @@ expand_mode = 1
 stretch_mode = 6
 mouse_filter = 2
 
+[node name="RarityBorder" type="ReferenceRect" parent="HBox/AvatarContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.3, 0.7, 0.3, 0.8)
+border_width = 2.0
+editor_only = false
+mouse_filter = 2
+
 [node name="Info" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
